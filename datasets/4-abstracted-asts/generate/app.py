@@ -1,8 +1,11 @@
 if __name__ == '__main__':
   import os
+  import re
   import sys
   import json
   import tqdm
+  import lzma
+  import multiprocessing
 
   import abstractions
 
@@ -77,11 +80,12 @@ if __name__ == '__main__':
 
   def abstract(as_str):
     tree = json.loads(as_str)
+    abstract_tree(tree)
     return json.dumps(tree)
 
 
-  with lzma.open('/mnt/outputs/dataset.jsonl.xz', mode='wt') as out_file:
-    with lzma.open('/mnt/inputs/dataset.jsonl.xz', mode='rt') as file:
+  with lzma.open('/mnt/outputs/github.jsonl.xz', mode='wt') as out_file:
+    with lzma.open('/mnt/inputs/github.jsonl.xz', mode='rt') as file:
       pool = multiprocessing.Pool()
       
       all_lines = file.readlines()
@@ -89,5 +93,17 @@ if __name__ == '__main__':
 
       results = pool.imap(abstract, all_lines, chunksize=500)
 
-      for result in tqdm.tqdm(results, total=length, desc="Generating: "):
+      for result in tqdm.tqdm(results, total=length, desc="Generating"):
+        out_file.write('{}\n'.format(result))
+
+  with lzma.open('/mnt/outputs/gold.jsonl.xz', mode='wt') as out_file:
+    with lzma.open('/mnt/inputs/gold.jsonl.xz', mode='rt') as file:
+      pool = multiprocessing.Pool()
+      
+      all_lines = file.readlines()
+      length = len(all_lines)
+
+      results = pool.imap(abstract, all_lines, chunksize=500)
+
+      for result in tqdm.tqdm(results, total=length, desc="Generating"):
         out_file.write('{}\n'.format(result))

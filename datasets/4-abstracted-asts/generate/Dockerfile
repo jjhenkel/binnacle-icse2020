@@ -8,4 +8,4 @@ RUN pip install --no-cache tqdm
 
 COPY . /app/
 
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+ENTRYPOINT [ "python3", "/app/app.py" ]

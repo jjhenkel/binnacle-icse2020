@@ -38,7 +38,7 @@ github.tar.xz: 219061 files
 gold.tar.xz: 432 files
 ```
 
-Verify count with:
+Verify counts with:
 ```bash
 # github
 tar -tJf ./0a-original-dockerfile-sources/github.tar.xz \
@@ -59,26 +59,28 @@ gold.tar.xz (uncompressed contents):
 45decb7a78f44f3ba8210918141c74a38541e686b451a583029f1dfe959a40a6
 ```
 
-Verify hash with:
+Verify hashes with:
 ```bash
+# github
 tar -xJOf ./0a-original-dockerfile-sources/github.tar.xz \
   | sha256sum | awk '{ print $1 }'
+# gold
 tar -xJOf ./0a-original-dockerfile-sources/gold.tar.xz \
   | sha256sum | awk '{ print $1 }'
 ```
 
 ## (0b) `datasets/0b-deduplicated-dockerfile-sources`
 
-Here we have the Dockerfiles that are unique based on a SHA256 hash of their contents. (A small area of improvement may be removing comments prior to doing deduplication.)
+Here we have the Dockerfiles that are unique based on a hash of their contents. (A small area of improvement may be removing comments prior to doing deduplication.)
 
 ### Example Usage
 
-**Representation:** this dataset is an archive file (format: `.tar.xz`) that, when extracted, yields a directory where each Dockerfile and has a filename based on the unique ID GitHub assigned to that file.
+**Representation:** this dataset is an archive file (format: `.tar.xz`) that, when extracted, yields a directory where each Dockerfile and has a filename based on the unique sha hash of that file.
 
 **Example:** 
 ```bash
-tar -xvJf ./0b-deduplicated-dockerfile-sources/dataset.tar.xz
-cat ./deduplicated-sources/291348084.Dockerfile 
+tar -xvJf ./0b-deduplicated-dockerfile-sources/github.tar.xz
+cat ./deduplicated-sources/f9f9726d2643993eb2176491858b7875ae332d05.Dockerfile 
 ```
 ```Dockerfile
 # https://hub.docker.com/r/consensysllc/go-ipfs/
@@ -90,28 +92,59 @@ COPY start_ipfs.sh /usr/local/bin/start_ipfs
 
 ### Dataset Statistics
 
-Size: `29M compressed/741M uncompressed`.
+Size:
+```
+github.tar.xz: 29M compressed/740M uncompressed
+gold.tar.xz: 72K compressed/2.1M uncompressed
+```
 
-Count: `178506 files`.
+Count:
+```
+github.tar.xz: 178506 files
+gold.tar.xz: 405 files
+```
 
-Verify count with:
+Verify counts with:
 ```bash
-tar -tJf ./0b-deduplicated-dockerfile-sources/dataset.tar.xz \
+# github
+tar -tJf ./0b-deduplicated-dockerfile-sources/github.tar.xz \
   | grep '.Dockerfile' \
   | wc -l
 # Or/also
-cat ./5-dockerfile-metadata/dataset.jsonl.xz \
+cat ./5-dockerfile-metadata/github.jsonl.xz \
   | xz -cd \
+  | jq '.file_sha' \
+  | sort -u \
+  | wc -l
+# gold
+tar -tJf ./0b-deduplicated-dockerfile-sources/gold.tar.xz \
+  | grep '.Dockerfile' \
+  | wc -l
+# Or/also
+cat ./5-dockerfile-metadata/github.jsonl.xz \
+  | xz -cd \
+  | grep 'repo_full_name":"docker-library/' \
   | jq '.file_sha' \
   | sort -u \
   | wc -l
 ```
 
-Hash: `de1b5c0cd0bb318a093a9efb19d446c755b1a4bf29f4649625a7f197c9f29fa6`
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+de1b5c0cd0bb318a093a9efb19d446c755b1a4bf29f4649625a7f197c9f29fa6
 
-Verify hash with:
+gold.tar.xz (uncompressed contents):
+4524dbe29d32027b239d367ca03359e40a74ff839367506a773cc623407b187f
+```
+
+Verify hashes with:
 ```bash
-tar -xJOf ./0b-deduplicated-dockerfile-sources/dataset.tar.xz \
+# github
+tar -xJOf ./0b-deduplicated-dockerfile-sources/github.tar.xz \
+  | sha256sum | awk '{ print $1 }'
+# gold
+tar -xJOf ./0b-deduplicated-dockerfile-sources/gold.tar.xz \
   | sha256sum | awk '{ print $1 }'
 ```
 
@@ -146,7 +179,7 @@ Here, for each Dockerfile in the previous representation (one-to-one), we have a
 
 **Example:** 
 ```bash
-cat ./1-phase-1-dockerfile-asts/dataset.jsonl.xz \
+cat ./1-phase-1-dockerfile-asts/github.jsonl.xz \
   | xz -cd \
   | grep '3d0d691c1745e14be0f1facd14c49e3fbbb750d8' \
   | jq
@@ -184,20 +217,42 @@ cat ./1-phase-1-dockerfile-asts/dataset.jsonl.xz \
 
 ### Dataset Statistics
 
-Size: `24M compressed/338M uncompressed`.
-
-Count: `178452 JSON objects`.
-
-Verify count with:
-```bash
-cat ./1-phase-1-dockerfile-asts/dataset.jsonl.xz | xz -cd | wc -l
+Size:
+```
+github.tar.xz: 32M compressed/338M uncompressed
+gold.tar.xz: 56K compressed/1.5M uncompressed
 ```
 
-Hash: `bed9d05e385e18f823c28f3dc02b3b03a2d9af8d1e1fd8c8786acbb55087a81c`
+Count:
+```
+github.tar.xz: 178452 files
+gold.tar.xz: 405 files
+```
 
-Verify hash with:
+Verify counts with:
 ```bash
-cat ./1-phase-1-dockerfile-asts/dataset.jsonl.xz | xz -cd \
+# github
+cat ./1-phase-1-dockerfile-asts/github.jsonl.xz | xz -cd | wc -l
+# gold
+cat ./1-phase-1-dockerfile-asts/gold.jsonl.xz | xz -cd | wc -l
+```
+
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+4a5ecd0fb902ac9e599de7fbe13d23b7e598a2384bd5936b09f745d1b45fc70a
+
+gold.tar.xz (uncompressed contents):
+045e387e678bb2740799fedf1e1bbfe4625042482eb6be2f8c9c6cc3aa2ed1e3
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./1-phase-1-dockerfile-asts/github.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+# gold
+cat ./1-phase-1-dockerfile-asts/gold.jsonl.xz | xz -cd \
   | sha256sum | awk '{ print $1 }'
 ```
 
@@ -217,7 +272,7 @@ In this representation we again have, for each Dockerfile AST from the previous 
 
 **Example:** 
 ```bash
-cat ./2-phase-2-dockerfile-asts/dataset.jsonl.xz \
+cat ./2-phase-2-dockerfile-asts/github.jsonl.xz \
   | xz -cd \
   | grep '972b56dc14ff87faddd0c35a5f3b6a32597a36ed' \
   | jq
@@ -306,22 +361,45 @@ cat ./2-phase-2-dockerfile-asts/dataset.jsonl.xz \
 
 ### Dataset Statistics
 
-Size: `36M compressed/1.2G uncompressed`.
-
-Count: `178452 JSON objects`.
-
-Verify count with:
-```bash
-cat ./2-phase-2-dockerfile-asts/dataset.jsonl.xz | xz -cd | wc -l
+Size:
+```
+github.tar.xz: 36M compressed/1.2G uncompressed
+gold.tar.xz: 76K compressed/7.9M uncompressed
 ```
 
-Hash: `d88b85d8e705f9720dc031a7a1b2db94c60fce097b322e167d3a658e45d48e7c`
+Count:
+```
+github.tar.xz: 178452 files
+gold.tar.xz: 405 files
+```
 
-Verify hash with:
+Verify counts with:
 ```bash
-cat ./2-phase-2-dockerfile-asts/dataset.jsonl.xz | xz -cd \
+# github
+cat ./2-phase-2-dockerfile-asts/github.jsonl.xz | xz -cd | wc -l
+# gold
+cat ./2-phase-2-dockerfile-asts/gold.jsonl.xz | xz -cd | wc -l
+```
+
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+df99118d4e78a797a7e90e9950ea38859ad2d80e1029a6449953dbd6151c21e2
+
+gold.tar.xz (uncompressed contents):
+61b2c5f51368a78f026d2f1f389b13862888c65e2f9d585b69202871397890fa
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./2-phase-2-dockerfile-asts/github.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+# gold
+cat ./2-phase-2-dockerfile-asts/gold.jsonl.xz | xz -cd \
   | sha256sum | awk '{ print $1 }'
 ```
+
 
 ### Re-generate from representation (1)
 
@@ -331,23 +409,108 @@ To regenerate from Phase-I ASTs use: `./2-phase-2-dockerfile-asts/generate.sh` o
 
 In this penultimate representation we have another (one-to-one) mapping from ASTs in the previous step to new ASTs. The difference in this new representation is that yet another level of parsing has been applied (using 50 generated parsers). Details on this Phase III representation and its utility are one of the primary facets of our paper.
 
+### Example Usage
+
+```bash
+cat ./3-phase-3-dockerfile-asts/github.jsonl.xz \
+  | xz -cd \
+  | grep '972b56dc14ff87faddd0c35a5f3b6a32597a36ed' \
+  | jq
+```
+
+```json
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [],
+          "type": "DOCKER-IMAGE-NAME",
+          "value": "node"
+        },
+        {
+          "children": [],
+          "type": "DOCKER-IMAGE-TAG",
+          "value": "10"
+        }
+      ],
+      "type": "DOCKER-FROM"
+    },
+    ...,
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "type": "SC-NPM-F-PRODUCTION"
+                }
+              ],
+              "type": "SC-NPM-INSTALL"
+            }
+          ],
+          "type": "BASH-SCRIPT"
+        }
+      ],
+      "type": "DOCKER-RUN"
+    },
+    ...,
+    {
+      "children": [
+        {
+          "children": [],
+          "type": "DOCKER-CMD-ARG",
+          "value": "bin/cncjs"
+        }
+      ],
+      "type": "DOCKER-CMD"
+    }
+  ],
+  "file_sha": "972b56dc14ff87faddd0c35a5f3b6a32597a36ed",
+  "type": "DOCKER-FILE"
+}
+```
 
 ### Dataset Statistics
 
-Size: `26M compressed/828M uncompressed`.
-
-Count: `178452 JSON objects`.
-
-Verify count with:
-```bash
-cat ./3-phase-3-dockerfile-asts/dataset.jsonl.xz | xz -cd | wc -l
+Size:
+```
+github.tar.xz: 30M compressed/838M uncompressed
+gold.tar.xz: 64K compressed/4.9M uncompressed
 ```
 
-Hash: `ab4944a937de15710261ea83d04660755700375e0847fb07aaa31746603f1d67`
+Count:
+```
+github.tar.xz: 178452 files
+gold.tar.xz: 405 files
+```
 
-Verify hash with:
+Verify counts with:
 ```bash
-cat ./3-phase-3-dockerfile-asts/dataset.jsonl.xz | xz -cd \
+# github
+cat ./3-phase-3-dockerfile-asts/github.jsonl.xz | xz -cd | wc -l
+# gold
+cat ./3-phase-3-dockerfile-asts/gold.jsonl.xz | xz -cd | wc -l
+```
+
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+23719160c5c9fa687bc9c207f2c1624d41cb736b6b74cb97ebabdc8ca8696f34
+
+gold.tar.xz (uncompressed contents):
+182a7d0802f786d8a5dd552ee0cf57e8264c26c9a6c87256c30f6024e0267abe
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./3-phase-3-dockerfile-asts/github.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+# gold
+cat ./3-phase-3-dockerfile-asts/gold.jsonl.xz | xz -cd \
   | sha256sum | awk '{ print $1 }'
 ```
 
@@ -362,11 +525,160 @@ Finally, for each enriched AST from the last representation (one-to-one), we app
 
 ### Example Usage
 
+```bash
+cat ./4-abstracted-asts/github.jsonl.xz \
+  | xz -cd \
+  | grep 'aaf505fc6efd672143ac63292122207db3f8b19b' \
+  | jq
+```
+
+```json
+{
+  "children": [
+    ...,
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "type": "BASH-VARIABLE:url"
+                    }
+                  ],
+                  "type": "BASH-ASSIGN-LHS"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "type": "ABS-PROBABLY-URL",
+                              "children": []
+                            },
+                            {
+                              "type": "ABS-URL-PROTOCOL-HTTPS",
+                              "children": []
+                            }
+                          ],
+                          "type": "BASH-SINGLE-QUOTED"
+                        },
+                        {
+                          "children": [],
+                          "type": "BASH-LITERAL"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [],
+                              "type": "BASH-VARIABLE:env"
+                            },
+                            {
+                              "children": [],
+                              "type": "BASH-LITERAL"
+                            }
+                          ],
+                          "type": "BASH-CONCAT"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [],
+                              "type": "BASH-VARIABLE:env"
+                            },
+                            {
+                              "children": [],
+                              "type": "BASH-LITERAL"
+                            }
+                          ],
+                          "type": "BASH-CONCAT"
+                        }
+                      ],
+                      "type": "BASH-ARRAY"
+                    }
+                  ],
+                  "type": "BASH-ASSIGN-RHS"
+                }
+              ],
+              "type": "BASH-ASSIGN"
+            },
+            {
+              "children": [],
+              "type": "UNKNOWN"
+            }
+          ],
+          "type": "BASH-SCRIPT"
+        }
+      ],
+      "type": "DOCKER-RUN"
+    },
+   ..,
+  ],
+  "file_sha": "aaf505fc6efd672143ac63292122207db3f8b19b",
+  "type": "DOCKER-FILE"
+}
+```
+
 ### Dataset Statistics
+
+Size:
+```
+github.tar.xz: 21M compressed/847M uncompressed
+gold.tar.xz: 48K compressed/4.8M uncompressed
+```
+
+Count:
+```
+github.tar.xz: 178452 files
+gold.tar.xz: 405 files
+```
+
+Verify counts with:
+```bash
+# github
+cat ./4-abstracted-asts/github.jsonl.xz | xz -cd | wc -l
+# gold
+cat ./4-abstracted-asts/gold.jsonl.xz | xz -cd | wc -l
+```
+
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+5f77746eddce8f1fd4434c0847ab79859cd1674c67c42e6f82555564b70b1215
+
+gold.tar.xz (uncompressed contents):
+d661e5fea20eb84f73f18ccd4330d0a11682611847ef6c09d63d6cb3bc808605
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./4-abstracted-asts/github.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+# gold
+cat ./4-abstracted-asts/gold.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+```
+
+### Re-generate from representation (3)
+
+To regenerate from Phase-II ASTs use: `./4-abstracted-asts/generate.sh` or (if not using a *nix system) manually build and run the Dockerfile in the `./4-abstracted-asts/generate/` directory. (If this second approach is used, one must volume mount `./3-phase-3-dockerfile-asts` to `/mnt/inputs` and `./4-abstracted-asts` to `/mnt/outputs`.)
 
 ## (5) `datasets/5-dockerfile-metadata`
 
-This is an extra dataset (**not** derived from the previously listed representation) that contains JSON objects (one per line) with information on each of the Dockerfiles we used. An example record is shown below:
+This is an extra dataset (**not** derived from the previously listed representation) that contains JSON objects (one per line) with information on each of the Dockerfiles we used. 
+
+### Example Usage
+
+```bash
+cat ./5-dockerfile-metadata/github.jsonl.xz \
+  | xz -cd | grep 'file_id":133495483' | jq
+```
 
 ```json
 {
@@ -382,17 +694,45 @@ This is an extra dataset (**not** derived from the previously listed representat
 }
 ```
 
-### Example Usage
-
 ### Dataset Statistics
 
-Size: `9.3M compressed/83M uncompressed`.
+Size:
+```
+github.tar.xz: 9.2M compressed/83M uncompressed
+gold.tar.xz: 20K compressed/156K uncompressed
+```
 
-Count: `178506 JSON objects`.
+Count:
+```
+github.tar.xz: 219061 files
+gold.tar.xz: 432 files
+```
 
-Verify count with:
+Verify counts with:
 ```bash
-cat ./5-dockerfile-metadata/dataset.jsonl.xz | xz -cd | wc -l
+# github
+cat ./5-dockerfile-metadata/github.jsonl.xz | xz -cd | wc -l
+# gold
+cat ./5-dockerfile-metadata/gold.jsonl.xz | xz -cd | wc -l
+```
+
+Hashes:
+```
+github.tar.xz (uncompressed contents):
+65674fb0812a7793f9ebf89b46af2622e0543b5f9223a5ed30ec774e7b758db5
+
+gold.tar.xz (uncompressed contents):
+16bce8507c00d4aa342fb199276ba238ea3bb58ebd3f850b912c8deb47cacddf
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./5-dockerfile-metadata/github.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
+# gold
+cat ./5-dockerfile-metadata/gold.jsonl.xz | xz -cd \
+  | sha256sum | awk '{ print $1 }'
 ```
 
 ---

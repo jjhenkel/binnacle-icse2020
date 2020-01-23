@@ -14,6 +14,8 @@ RUN echo "deb http://archive.debian.org/debian jessie-backports main" \
   apt-get -o Acquire::Check-Valid-Until=false update; \
   apt-get install -y --no-install-recommends jq python3 python3-pip   
 
+RUN pip3 install tqdm
+
 WORKDIR /app
 
 COPY app.hs /build/

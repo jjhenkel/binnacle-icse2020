@@ -3,7 +3,9 @@ if __name__ == '__main__':
   import sys
   import json
   import lzma
+  import tqdm
   import subprocess
+  import multiprocessing
 
 
   def parse_within(bash_str):
@@ -56,9 +58,32 @@ if __name__ == '__main__':
     return node
 
 
-  with lzma.open('/mnt/outputs/dataset.jsonl.xz', mode='wt') as out_file:
-    with lzma.open('/mnt/inputs/dataset.jsonl.xz', mode='rt') as file:
-      for line in file:
-        out_file.write('{}\n'.format(json.dumps(parse_embedded_bash(
-          json.loads(line.strip())
-        ))))
+  def process(line):
+    return json.dumps(
+      parse_embedded_bash(json.loads(line.strip()))
+    )
+
+
+  pool = multiprocessing.Pool()
+
+
+  with lzma.open('/mnt/outputs/github.jsonl.xz', mode='wt') as out_file:
+    with lzma.open('/mnt/inputs/github.jsonl.xz', mode='rt') as file:
+      
+      all_lines = file.readlines()
+
+      results = pool.imap(process, all_lines, chunksize=500)
+
+      for result in tqdm.tqdm(results, total=len(all_lines), desc="Generating"):
+        out_file.write('{}\n'.format(result))
+
+
+  with lzma.open('/mnt/outputs/gold.jsonl.xz', mode='wt') as out_file:
+    with lzma.open('/mnt/inputs/gold.jsonl.xz', mode='rt') as file:
+      
+      all_lines = file.readlines()
+
+      results = pool.imap(process, all_lines, chunksize=500)
+
+      for result in tqdm.tqdm(results, total=len(all_lines), desc="Generating"):
+        out_file.write('{}\n'.format(result))
