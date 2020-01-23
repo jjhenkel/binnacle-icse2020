@@ -1,0 +1,92 @@
+command:
+  providerFor:
+    - gem
+  prefix: SC-GEM
+  installOrUpdateOptions: &installOrUpdateOptions
+    booleans:
+      - -h, --help
+      - -V, --verbose
+      - --no-verbose
+      - -q, --quiet
+      - --silent
+      - --backtrace
+      - --debug
+      - --norc
+      - -l, --local
+      - -r, --remote
+      - -b, --both
+      - --clear-source
+      - --no-http-proxy
+      - --no-lock
+      - --no-suggestions
+      - --lock
+      - --suggestions
+      - --default
+      - --post-install-message
+      - --no-post-install-message
+      - --minimal-deps
+      - --conservative
+      - --development
+      - --development-all
+      - user-install
+      - --no-user-install
+      - --ignore-dependencies
+      - -f, --force
+      - --no-force
+      - -w, --wrappers
+      - --no-wrappers
+      - --vendor
+      - -N, --no-document
+      - -E, --env-shebang
+      - --no-env-shebang
+      - -u, --update-sources
+      - --no-update-sources
+      - --prerelease
+      - --no-prerelease
+      - --no-ri
+      - --no-rdoc
+      - --system
+    strings:
+      - --platform
+      - -P, --trust-policy
+      - -s, --source
+      - -p, --http-proxy
+    paths:
+      - -i, --install-dir
+      - -n, --bindir
+      - -g, --file
+      - --config-file
+      - --build-root
+    arrays:
+      - -v, --version
+      - --document
+  scenarios:
+    - cmd: $0 install [gems...]
+      options: *installOrUpdateOptions
+      name: SC-GEM-INSTALL
+    - cmd: $0 update [gems...]
+      options: *installOrUpdateOptions
+      name: SC-GEM-UPDATE
+    - cmd: $0 cleanup
+      options: {}
+      name: SC-GEM-CLEAN
+    - cmd: $0 list
+      options: {}
+      name: SC-GEM-LIST
+    - cmd: $0 build <path>
+      options:
+        booleans:
+          - -h, --help
+          - -V, --verbose
+          - --no-verbose
+          - -q, --quiet
+          - --silent
+          - --backtrace
+          - --debug
+          - --norc
+          - --force
+          - --strict
+        paths:
+          - -o, --output
+          - --config-file
+      name: SC-GEM-BUILD

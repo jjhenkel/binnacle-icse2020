@@ -1,0 +1,119 @@
+command:
+  providerFor:
+    - git
+  prefix: SC-GIT
+  scenarios:
+    - cmd: $0 submodule init
+      options: {}
+      name: SC-GIT-SUBMODULE-INIT
+    - cmd: $0 submodule update
+      options:
+        booleans:
+          - --init
+          - --recursive
+      name: SC-GIT-SUBMODULE-UPDATE
+    - cmd: $0 pull
+      options: {}
+      name: SC-GIT-PULL
+    - cmd: $0 remote set-url <target> <url>
+      options: {}
+      name: SC-GIT-REMOTE-SET-URL
+    - cmd: $0 reset <target>
+      options:
+        booleans:
+          - --hard
+      name: SC-GIT-RESET
+    - cmd: $0 rev-parse <target>
+      options:
+        booleans:
+          - --short
+      name: SC-GIT-REV-PARSE
+    - cmd: $0 clone <url> [directory]
+      options:
+        booleans:
+          - --single-branch
+          - -q, --quiet
+          - --recursive
+          - --no-recurse-submodules
+          - --recurse-submodules
+        strings:
+          - -b, --branch
+          - --depth
+      name: SC-GIT-CLONE
+    - cmd: $0 init
+      options: {}
+      name: SC-GIT-INIT
+    - cmd: $0 checkout <target>
+      options:
+        booleans:
+          - --track
+          - -q, --quiet
+      name: SC-GIT-CHECKOUT
+    - cmd: $0 gc
+      options:
+        booleans:
+          - --aggressive
+          - -p, --prune
+      name: SC-GIT-GC
+    - cmd: $0 config <setting> <value>
+      options: 
+        booleans:
+          - --global
+          - --system
+      name: SC-GIT-GC
+    - cmd: $0 fetch [args...]
+      options:
+        booleans:
+          - -q, --quiet
+          - --tags
+          - -f, --force
+          - --no-recurse-submodules
+          - --recurse-submodules
+          - --all
+          - -p, --prune
+      name: SC-GIT-FETCH
+    - cmd: $0 describe
+      options:
+        booleans:
+          - --always
+          - --tags
+        strings:
+          - --match
+          - --dirty
+      name: SC-GIT-DESCRIBE
+    - cmd: $0 commit
+      options:
+        booleans:
+          - --allow-empty
+          - --allow-empty-message
+          - --no-edit
+        strings:
+          - -m, --message
+      name: SC-GIT-COMMIT
+    - cmd: $0 cat-file <file>
+      options:
+        booleans:
+          - -t
+          - -s
+          - -e
+          - -p
+      name: SC-GIT-CAT-FILE
+    - cmd: $0 clean
+      options:
+        booleans:
+          - -d,
+          - -f, --force
+          - -i, --interactive
+          - -n, --dry-run
+          - -q, --quiet
+          - -x
+          - -X
+        arrays:
+          - -e, --exclude
+      name: SC-GIT-CLEAN
+    - cmd: $0
+      options:
+        booleans:
+          - --version
+          - --help
+      name: SC-GIT

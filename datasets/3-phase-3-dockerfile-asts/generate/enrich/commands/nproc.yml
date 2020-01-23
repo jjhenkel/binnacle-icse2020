@@ -1,0 +1,14 @@
+command:
+  providerFor:
+    - nproc
+  prefix: SC-NPROC
+  scenarios:
+    - cmd: $0
+      options:
+        booleans:
+          - --all
+          - --help
+          - --version
+        strings:
+          - --ignore
+      name: SC-NPROC

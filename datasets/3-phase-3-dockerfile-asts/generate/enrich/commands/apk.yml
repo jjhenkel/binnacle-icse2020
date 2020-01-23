@@ -1,0 +1,100 @@
+command:
+  prefix: SC-APK
+  providerFor:
+    - apk
+  optionsAll: &optionsAll
+    booleans:
+      - --print-arch
+      - --no-cache
+      - --force
+      - -u, --update
+      - -U, --update-cache
+      - -q, --quiet
+      - --no-progress
+    arrays:
+      - -X, --repository
+    counts:
+      - -v, --verbose
+  optionsInfo: &optionsInfo
+    booleans:
+      - --installed
+  optionsAdd: &optionsAdd
+    booleans:
+      - --no-network
+      - --initdb
+      - --allow-untrusted
+      - --upgrade
+    strings:
+      - -p
+      - -t, --virtual
+  optionsDel: &optionsDel
+    booleans:
+      - --no-network
+      - --purge
+  scenarios:
+    - cmd: $0 add [packages...]
+      options:
+        merge: [ *optionsAll, *optionsAdd ]
+      name: SC-APK-ADD
+    - cmd: $0 del [packages...]
+      options:
+        merge: [ *optionsAll, *optionsDel ]
+      name: SC-APK-DEL
+    - cmd: $0 fix
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-FIX
+    - cmd: $0 update
+      options: *optionsAll
+      name: SC-APK-UPDATE
+    - cmd: $0 info
+      options:
+        merge: [ *optionsAll, *optionsInfo ]
+      name: SC-APK-INFO
+    - cmd: $0 search
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-SEARCH
+    - cmd: $0 upgrade [packages...]
+      options: *optionsAll
+      name: SC-APK-UPGRADE
+    - cmd: $0 cache
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-CACHE
+    - cmd: $0 version
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-VERSION
+    - cmd: $0 index
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-INDEX
+    - cmd: $0 fetch
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-FETCH
+    - cmd: $0 audit
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-AUDIT
+    - cmd: $0 verify
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-VERIFY
+    - cmd: $0 dot
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-DOT
+    - cmd: $0 policy <package>
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-POLICY
+    - cmd: $0 stats
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-STATS
+    - cmd: $0 manifest
+      unsupported: true
+      options: *optionsAll
+      name: SC-APK-MANIFEST

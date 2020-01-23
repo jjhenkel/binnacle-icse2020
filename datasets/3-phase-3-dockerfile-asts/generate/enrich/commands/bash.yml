@@ -1,0 +1,32 @@
+command:
+  prefix: SC-BASH
+  providerFor:
+    - bash
+  options: &options
+    booleans:
+      - -i
+      - -L, --login
+      - -r
+      - -s
+      - -D
+      - --noediting
+      - --noprofile
+      - --norc
+      - --posix
+      - --restricted
+      - -v, --verbose
+      - --version
+      - --rpm-requires
+      - --debugger
+      - --dump-po-strings
+      - --dump-strings
+      - --help
+    strings:
+      - -c
+    paths:
+      - --init-file
+      - --rcfile
+  scenarios:
+    - cmd: $0 [script] [args...]
+      options: *options
+      name: SC-BASH

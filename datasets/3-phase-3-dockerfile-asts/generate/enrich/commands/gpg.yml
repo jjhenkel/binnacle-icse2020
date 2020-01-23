@@ -1,0 +1,38 @@
+command:
+  providerFor:
+    - gpg
+  prefix: SC-GPG
+  options: &options
+    booleans:
+      - --version
+      - --verbose
+      - --fingerprint
+      - --batch
+      - -y, --yes
+      - --no-tty
+      - --import
+      - --fast-import
+      - -a, --armor
+      - --no-batch
+      - -q, --quiet
+      - --enarmor
+      - --dearmor
+      - -d, --decrypt
+      - --refresh-keys
+    paths:
+      - --homedir
+      - --options
+    strings:
+      - --trusted-key
+      - --recv-key
+      - --recv
+      - --keyserver
+    arrays:
+      - --export
+      - --verify
+      - --recv-keys
+      - --keyserver-options
+  scenarios:
+    - cmd: $0 [targets...]
+      options: *options
+      name: SC-GPG

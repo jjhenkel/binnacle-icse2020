@@ -1,0 +1,84 @@
+command:
+  providerFor:
+    - pip
+    - pip2
+    - pip3
+  prefix: SC-PIP
+  optionsAll: &optionsAll
+    booleans:
+      - -h, --help
+      - --isolated
+      - -v, --verbose
+      - -V, --version
+      - -q, --quiet
+      - --no-cache-dir
+      - --disable-pip-version-check
+    strings:
+      - --proxy
+      - --retries
+      - --timeout
+      - --exists-action
+      - --trusted-host
+    paths:
+      - --log
+      - --cert
+      - --client-cert
+      - --cache-dir
+  optionsInstall: &optionsInstall
+      booleans:
+        - -U, --upgrade
+        - --force-reinstall
+        - -I, --ignore-installed
+        - --ignore-requires-python
+        - --no-deps
+        - --user
+        - --system
+        - --egg
+        - --compile
+        - --no-compile
+        - --no-use-wheel
+        - --pre
+        - --no-clean
+        - --require-hashes
+        - --no-index
+        - --process-dependency-links
+      strings:
+        - -i, --index-url
+        - -e, --editable
+        - --upgrade-strategy
+        - --no-binary
+        - --only-binary
+        - -f, --find-links
+      paths:
+        - -c, --constraint
+        - -r, --requirements
+        - -b, --build
+        - -t, --target
+        - -d, --download
+        - --src
+        - --root
+        - --prefix
+      arrays:
+        - --extra-index-url
+        - --install-option
+        - --global-option
+  optionsUninstall: &optionsUnistall
+    booleans:
+      - -y, --yes
+    paths:
+      - -r, --requirements
+  scenarios:
+    - cmd: $0 install [targets...]
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-PIP-INSTALL
+    - cmd: $0 uninstall [targets...]
+      options:
+        merge: [ *optionsAll, *optionsUnistall ]
+      name: SC-PIP-UNINSTALL
+    - cmd: $0 freeze
+      options: *optionsAll
+      name: SC-PIP-FREEZE
+    - cmd: $0
+      options: *optionsAll
+      name: SC-PIP

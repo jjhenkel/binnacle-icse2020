@@ -1,0 +1,74 @@
+command:
+  providerFor:
+    - useradd
+  prefix: SC-USER-ADD
+  options: &options
+    booleans:
+      - -D, --defaults
+      - -h, --help
+      - -l, --no-log-init
+      - -m, --create-home
+      - -M, --no-create-home
+      - -N, --no-user-group
+      - -o, --non-unique
+      - -r, --system
+      - -U, --user-group
+    strings:
+      - -c, --comment
+      - -e, --expiredate
+      - -f, --inactive
+      - -g, --gid
+      - -p, --password
+      - -s, --shell
+      - -u, --uid
+      - -Z, --selinux-user
+    paths:
+      - -b, --base-dir
+      - -d, --home-dir
+      - -k, --skel
+      - -R, --root
+    arrays:
+      - -k, --key
+  optionsA: &optionsA
+    arrays:
+      - -G, --groups
+  optionsB: &optionsB
+    strings:
+      - -G, --groups
+  scenarios:
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsA ]
+      mustHave:
+        - -D
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsA ]
+      mustHave:
+        - --defaults
+      name: SC-USER-ADD
+    - cmd: $0 <login>
+      options:
+        merge: [ *options, *optionsA ]
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+        - -D
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+        - --defaults
+      name: SC-USER-ADD
+    - cmd: $0 <login>
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+      name: SC-USER-ADD

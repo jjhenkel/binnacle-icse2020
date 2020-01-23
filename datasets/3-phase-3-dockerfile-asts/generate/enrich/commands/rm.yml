@@ -1,0 +1,22 @@
+command:
+  providerFor:
+    - rm
+  prefix: SC-RM
+  scenarios:
+    - cmd: $0 [paths...]
+      options:
+        booleans:
+          - -r, --recursive
+          - -R, --recursive
+          - -f, --force
+          - -i
+          - -I
+          - --one-file-system
+          - -v, --verbose
+          - --version
+          - --help
+          - --preserve-root
+          - --no-preserve-root
+        strings:
+          - --interactive
+      name: SC-RM

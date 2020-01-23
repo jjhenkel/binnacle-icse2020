@@ -1,0 +1,69 @@
+command:
+  prefix: SC-APT-KEY
+  providerFor:
+    - apt-key
+  options: &options
+    paths:
+      - --keyring
+  optionsAdv: &optionsAdv
+    booleans:
+      - --version
+      - --verbose
+      - --fingerprint
+      - --batch
+      - -y, --yes
+      - --no-tty
+      - --import
+      - --fast-import
+      - -a, --armor
+      - --no-batch
+      - -q, --quiet
+      - --enarmor
+      - --dearmor
+      - -d, --decrypt
+      - --refresh-keys
+    paths:
+      - --homedir
+      - --options
+    strings:
+      - --trusted-key
+      - --recv-key
+      - --recv
+      - --keyserver
+    arrays:
+      - --export
+      - --verify
+      - --recv-keys
+      - --keyserver-options
+  scenarios:
+    - cmd: $0 add <filename>
+      options: *options
+      name: SC-APT-KEY-ADD
+    - cmd: $0 del <keyid>
+      options: *options
+      name: SC-APT-KEY-DEL
+    - cmd: $0 export <keyid>
+      options: *options
+      name: SC-APT-KEY-EXPORT
+    - cmd: $0 exportall
+      options: *options
+      name: SC-APT-KEY-EXPORT-ALL
+    - cmd: $0 list
+      options: *options
+      name: SC-APT-KEY-LIST
+    - cmd: $0 finger
+      options: *options
+      name: SC-APT-KEY-FINGER
+    - cmd: $0 fingerprint <key>
+      options: *options
+      name: SC-APT-KEY-FINGERPRINT
+    - cmd: $0 adv
+      options:
+        merge: [ *options, *optionsAdv ]
+      name: SC-APT-KEY-ADV
+    - cmd: $0 update
+      options: *options
+      name: SC-APT-KEY-UPDATE
+    - cmd: $0 net-update
+      options: *options
+      name: SC-APT-KEY-NET-UPDATE

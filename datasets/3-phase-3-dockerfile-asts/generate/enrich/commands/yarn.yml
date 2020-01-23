@@ -1,0 +1,152 @@
+command:
+  providerFor:
+    - yarn
+  prefix: SC-YARN
+  options: &options
+    booleans:
+      - --verbose
+      - --help
+    paths:
+      - --cache-folder
+    strings:
+      - --mutex
+  installOptions: &installOptions
+    booleans:
+      - --check-files
+      - --flat
+      - --force
+      - --har
+      - --ignore-scripts
+      - --no-lockfile
+      - --pure-lockfile
+      - --focus
+      - --frozen-lockfile
+      - --silent
+      - --ignore-engines
+      - --ignore-optional
+      - --offline
+      - --non-interactive
+      - --update-checksums
+      - --audit
+      - --no-bin-links
+      - --link-duplicates
+    strings:
+      - --prod, --production
+    paths:
+      - --modules-folder
+  addOptions: &addOptions
+    booleans:
+      - -D, --dev
+      - -P, --peer
+      - -O, --optional
+      - -E, --exact
+      - -T, --tilde
+      - -N, --ignore-workspace-root-check
+      - --audit
+  cacheListOptions: &cacheListOptions
+    strings:
+      - --pattern
+  auditOptions: &auditOptions
+    booleans:
+      - --verbose
+      - --json
+  autocleanOptions: &autocleanOptions
+    booleans:
+      - -I, --init
+      - -F, --force
+  scenarios:
+    - cmd: $0 add [modules...]
+      options:
+        merge: [ *options, *addOptions ]
+      name: SC-YARN-ADD
+    - cmd: $0 audit
+      options:
+        merge: [ *options, *auditOptions ]
+      name: SC-YARN-AUDIT
+    - cmd: $0 autoclean
+      options:
+        merge: [ *options, *autocleanOptions ]
+      name: SC-YARN-AUTO-CLEAN
+    - cmd: $0 bin <executable>
+      options: *options
+      name: SC-YARN-BIN
+    - cmd: $0 lint
+      options: *options
+      name: SC-YARN-LINT
+    - cmd: $0 cache list
+      options:
+        merge: [ *options, *cacheListOptions ]
+      name: SC-YARN-CACHE-LIST
+    - cmd: $0 cache clean [modules...]
+      options: *options
+      name: SC-YARN-CACHE-CLEAN
+    - cmd: $0 cache dir
+      options: *options
+      name: SC-YARN-CACHE-DIR
+    - cmd: $0 global add [modules...]
+      options:
+        merge: [ *options, *addOptions ]
+      name: SC-YARN-GLOBAL-ADD
+    - cmd: $0 install
+      options:
+        merge: [ *options, *installOptions ]
+      name: SC-YARN-INSTALL
+    - cmd: $0 run <script>
+      options: *options
+      name: SC-YARN-RUN-SCRIPT
+      captureAfterThirdNonOption: args
+    - cmd: $0 <script>
+      options: *options
+      name: SC-YARN-RUN-SCRIPT
+      rejectIfIs:
+        name: script
+        values:
+          - add
+          - audit
+          - autoclean
+          - bin
+          - cache
+          - check
+          - config
+          - create
+          - dedupe
+          - generate-lock-entry
+          - global
+          - help
+          - import
+          - info
+          - init
+          - install
+          - licenses
+          - link
+          - list
+          - lockfile
+          - login
+          - logout
+          - outdated
+          - owner
+          - pack
+          - policies
+          - prune
+          - publish
+          - remove
+          - run
+          - self-update
+          - tag
+          - team
+          - test
+          - unlink
+          - upgrade
+          - upgrade-interactive
+          - version
+          - versions
+          - why
+          - workspace
+          - workspaces
+      captureAfterSecondNonOption: args
+    - cmd: $0
+      options:
+        merge: [ *options, *installOptions ]
+      rejectIf: [ 'install' ]
+      name: SC-YARN-INSTALL
+      

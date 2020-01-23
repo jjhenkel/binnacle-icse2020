@@ -1,0 +1,14 @@
+command:
+  providerFor:
+    - echo
+  prefix: SC-ECHO
+  scenarios:
+    - cmd: $0 [items...]
+      options:
+        booleans:
+          - -n
+          - -e
+          - -E
+          - --version
+          - --help
+      name: SC-ECHO

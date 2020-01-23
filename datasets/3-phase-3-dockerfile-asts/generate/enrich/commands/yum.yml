@@ -1,0 +1,64 @@
+command:
+  providerFor:
+    - yum
+  prefix: SC-YUM
+  optionsAll: &optionsAll
+    booleans:
+      - -h, --help
+      - -y, --assumeyes
+      - -q, --quiet
+      - -v, --verbose
+      - -C, --cacheonly
+      - --version
+      - --showduplicates
+      - --obsoletes
+      - --noplugins
+      - --nopgpgcheck
+      - --skip-broken
+      - -t, --tolerant
+    strings:
+      - -d, --debuglevel
+      - -e, --errorlevel
+      - --rpmverbosity
+      - -R, --randomwait
+      - --enablerepo
+      - --disablerepo
+      - -x, --exclude
+      - --color
+      - --disableexcludes
+    paths:
+      - -c, --config
+      - --installroot
+    arrays:
+      - --setopt
+  scenarios:
+    - cmd: $0 remove [packages...]
+      options: *optionsAll
+      name: SC-YUM-REMOVE
+    - cmd: $0 erase [packages...]
+      options: *optionsAll
+      name: SC-YUM-REMOVE
+    - cmd: $0 clean all 
+      options: *optionsAll
+      name: SC-YUM-CLEAN-ALL
+    - cmd: $0 update [packages...]
+      options: *optionsAll
+      name: SC-YUM-UPDATE
+    - cmd: $0 upgrade [packages...]
+      options: *optionsAll
+      name: SC-YUM-UPGRADE
+    - cmd: $0 install [packages...]
+      options: *optionsAll
+      name: SC-YUM-INSTALL
+    - cmd: $0 localinstall [packages...]
+      options: *optionsAll
+      name: SC-YUM-LOCAL-INSTALL
+    - cmd: $0 groupinstall [packages...]
+      options: *optionsAll
+      name: SC-YUM-GROUP-INSTALL
+    - cmd: $0 versionlock [packages...]
+      options: *optionsAll
+      name: SC-YUM-VERSION-LOCK
+    - cmd: $0 makecache
+      options: *optionsAll
+      name: SC-YUM-MAKECACHE

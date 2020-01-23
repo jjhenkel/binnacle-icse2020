@@ -1,0 +1,18 @@
+command:
+  providerFor:
+    - mkdir
+  prefix: SC-MKDIR
+  options: &options
+    booleans:
+      - -p, --parents
+      - -v, --verbose
+      - -Z
+      - --help
+      - --version
+    strings:
+      - -m, --mode
+      - --context
+  scenarios:
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-MKDIR

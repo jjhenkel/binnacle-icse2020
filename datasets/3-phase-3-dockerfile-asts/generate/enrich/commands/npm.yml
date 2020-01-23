@@ -1,0 +1,99 @@
+command:
+  providerFor:
+    - npm
+  prefix: SC-NPM
+  optionsInstall: &optionsInstall
+    booleans:
+      - -P, --save-prod
+      - -D, --save-dev
+      - -O, --save-optional
+      - --no-save
+      - -E, --save-exact
+      - -B, --save-bundle
+      - --dry-run
+      - --package-lock-only
+      - -f, --force
+      - -g, --global
+      - --global-style
+      - --ignore-scripts
+      - --legacy-bundling
+      - --link
+      - --no-bin-links
+      - --no-optional
+      - --no-shrinkwrap
+      - --no-package-lock
+      - --no-audit
+      - --no-color
+      - --save
+      - --production
+    strings:
+      - --only
+      - --tag
+      - --prefix
+    paths:
+      - --nodedir
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 i [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 add [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 ci
+      options: *optionsInstall
+      name: SC-NPM-CI
+    - cmd: $0 uninstall [packages...]
+      options: *optionsInstall
+      name: SC-NPM-REMOVE
+    - cmd: $0 remove [packages...]
+      options: *optionsInstall
+      name: SC-NPM-REMOVE
+    - cmd: $0 build [folder]
+      options: {}
+      name: SC-NPM-BUILD
+    - cmd: $0 run [args...]
+      options: {}
+      name: SC-NPM-RUN
+    - cmd: $0 run-script [args...]
+      options: {}
+      name: SC-NPM-RUN-SCRIPT
+    - cmd: $0 cache clean
+      options:
+        booleans:
+          - --force
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 cache rm
+      options:
+        booleans:
+          - --force
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 cache clear
+      options:
+        booleans:
+          - --force
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 config set <key> <value>
+      options: {}
+      name: SC-NPM-CONFIG-SET
+    - cmd: $0 config set <combined>
+      options: {}
+      name: SC-NPM-CONFIG-SET
+    - cmd: $0 link
+      options: {}
+      name: SC-NPM-LINK
+    - cmd: $0 prune [packages...]
+      options:
+        booleans:
+          - --production
+          - --json
+          - --dry-run
+      name: SC-NPM-PRUNE
+    - cmd: $0
+      options:
+        booleans:
+          - --help
+          - -v, --version
+      name: SC-NPM

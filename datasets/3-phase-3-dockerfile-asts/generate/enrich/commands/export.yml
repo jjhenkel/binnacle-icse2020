@@ -1,0 +1,8 @@
+command:
+  providerFor:
+    - export
+  prefix: SC-EXPORT
+  scenarios:
+    - cmd: $0 <target>
+      options: {}
+      name: SC-EXPORT

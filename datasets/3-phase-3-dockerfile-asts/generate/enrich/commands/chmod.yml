@@ -1,0 +1,26 @@
+command:
+  providerFor:
+    - chmod
+  prefix: SC-CHMOD
+  options: &options
+    booleans:
+      - -R, --recursive
+      - --help
+      - --version
+      - --no-preserve-root
+      - -v, --verbose
+      - -f, --silent
+      - -f, --quiet
+      - -c, --changes
+      - --preserve-root
+    paths:
+      - --reference
+  scenarios:
+    - cmd: $0 <mode> [paths...]
+      options: *options
+      name: SC-CHMOD
+    - cmd: $0 [paths...]
+      options: *options
+      mustHave:
+        - --reference
+      name: SC-CHMOD

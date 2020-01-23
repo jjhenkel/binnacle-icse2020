@@ -1,0 +1,35 @@
+command:
+  providerFor:
+    - unzip
+  prefix: SC-UNZIP
+  options: &options
+    booleans:
+      - -p
+      - -f
+      - -u
+      - -v
+      - -l
+      - -t
+      - -z
+      - -T
+      - -n
+      - -o
+      - -j
+      - -C
+      - -X
+      - -K
+      - -L
+      - -V
+      - -M
+    paths:
+      - -d
+    arrays:
+      - -x
+    counts:
+      - -q
+      - -a 
+      - -U
+  scenarios:
+    - cmd: $0 <file> [items...]
+      options: *options
+      name: SC-UNZIP

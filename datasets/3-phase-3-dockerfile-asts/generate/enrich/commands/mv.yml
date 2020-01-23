@@ -1,0 +1,27 @@
+command:
+  providerFor:
+    - mv
+  prefix: SC-MV
+  scenarios:
+    - cmd: $0 [paths...]
+      options:
+        booleans: 
+          - -b
+          - -f, --force
+          - -i, --interactive
+          - -n, --no-clobber
+          - --strip-trailing-slashes
+          - -u, --update
+          - -v, --verbose
+          - --version
+          - --help
+          - -T, --no-target-directory
+        strings:
+          - -S, --suffix
+        paths:
+          - -t, --target-directory
+      name: SC-MV
+      postProcess:
+        - tagLastElement:
+            source: paths
+            tag: SC-MV-DESTINATION

@@ -1,0 +1,18 @@
+command:
+  prefix: SC-APT-ADD-REPOSITORY
+  providerFor:
+    - apt-add-repository
+  options: &options
+    booleans:
+      - -h, --help
+      - -m, --massive-debug
+      - -r, --remove
+      - -s, --enable-source
+      - -y, --yes
+      - -u, --update
+    strings:
+      - -k, --keyserver
+  scenarios:
+    - cmd: $0 <repository>
+      options: *options
+      name: SC-APT-ADD-REPOSITORY

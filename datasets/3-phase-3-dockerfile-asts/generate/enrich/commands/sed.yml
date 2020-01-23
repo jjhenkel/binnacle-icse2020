@@ -1,0 +1,53 @@
+command:
+  providerFor:
+    - sed
+  prefix: SC-SED
+  options: &options
+    booleans:
+      - -i, --in-place
+      - --posix
+      - -n, --quiet
+      - -n, --silent
+      - -s, --separate
+      - --sandbox
+      - -u, --unbuffered
+      - -z, --null-data
+      - --help
+      - --version
+      - -E, --regexp-extended
+      - -E, -r
+    arrays:
+      - -e, --expression
+    paths:
+      - -f, --file
+  scenarios:
+    - cmd: $0 <expression> [paths...]
+      options: *options
+      name: SC-SED
+      rejectIf: [ '-e', '--expression', '-f', '--file' ]
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - -e
+      stealFromArrayFor:
+        array: e
+        for: paths
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - --expression
+      stealFromArrayFor:
+        array: expression
+        for: paths
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - -f
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - --file
