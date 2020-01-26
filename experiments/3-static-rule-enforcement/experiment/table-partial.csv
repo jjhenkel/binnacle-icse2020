@@ -1,0 +1,24 @@
+keyName,ruleName,bashBestPractice,immediateImpact,futureImpact,goldSupport,goldConfidence
+pipUseNoCacheDir,pipUseCacheDir,No,Space wastage,Increased attack surface
+npmCacheCleanUseForce,npmCacheCleanUseForce,No,Space wastage,Increased attack surface
+mkdirUsrSrcThenRemove,mkdirUsrSrcThenRemove,Yes,Space wastage,Increased attack surface
+rmRecursiveAfterMktempD,rmRecurisveAfterMktempD,Yes,Space wastage,Increased attack surface
+curlUseFlagF,curlUseFlagF,No,None,Easier to add future bugs
+tarSomethingRmTheSomething,tarSomethingRmTheSomething,Yes,Space wastage,Increased attack surface
+apkAddUseNoCache,apkAddUseNoCache,No,Space wastage,Increased attack surface
+ruleAptGetInstallUseNoRec,aptGetInstallUseNoRec,No,Space wastage,Build failure
+curlUseHttpsUrl,curlUseHttpsUrl,Yes,Insecure,Insecure
+gpgUseBatchFlag,gpgUseBatchFlag,No,Build reliability,Build reliability
+sha256sumEchoOneSpaces,sha256sumEchoOneSpace,Yes,Build failure,N/A
+gpgUseHaPools,gpgUseHaPools,No,Build reliability,Build reliability
+configureShouldUseBuildFlag,configureUseBuildFlag,No,None,Easier to add future bugs
+wgetUseHttpsUrl,wgetUseHttpsUrl,Yes,Insecure,Insecure
+ruleAptGetInstallThenRemoveAptLists,aptGetInstallRmAptLists,No,Space wastage,Increased attack surface
+ruleAptGetInstallUseY,aptGetInstallUseY,No,Build failure,N/A
+ruleAptGetUpdatePrecedesInstall,aptGetUpdatePrecedesInstall,No,Build failure,N/A
+gpgVerifyAscRmAsc,gpgVerifyAscRmAsc,Yes,Space wastage,Increased attack surface
+npmCacheCleanAfterInstall,npmCacheCleanAfterInstall,No,Space wastage,Increased attack surface
+gemUpdateSystemRmRootGem,gemUpdateSystemRmRootGem,No,Space wastage,Increased attack surface
+gemUpdateNoDocument,gemUpdateNoDocument,No,Space wastage,Increased attack surface
+yumInstallForceYes,yumInstallForceYes,No,Build failure,N/A
+yumInstallRmVarCacheYum,yumInstallRmVarCacheYum,No,Space wastage,Increased attack surface
