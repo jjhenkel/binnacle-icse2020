@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "/build",
+        "baseUrl": "/usr/local/lib/node_modules",
+        "moduleResolution": "node",
+        "typeRoots": [
+            "/usr/local/lib/node_modules/@types"
+        ],
+        "lib": [
+          "es2019"
+        ]
+    },
+    "include": [
+        "app.ts",
+        "ast.ts",
+        "checker/index.ts",
+        "checker/rules/index.ts",
+        "checker/rules/rules.ts"
+    ],
+    "exclude": []
+}
