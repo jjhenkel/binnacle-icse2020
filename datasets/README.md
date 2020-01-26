@@ -735,6 +735,63 @@ cat ./5-dockerfile-metadata/gold.jsonl.xz | xz -cd \
   | sha256sum | awk '{ print $1 }'
 ```
 
+## (6) `datasets/6-gold-rules`
+
+This is another extra dataset (**not** derived from the previously listed representations/datsets) that contains the TypeScript (TS) encoding of the 23 rules in our set of unfilterd _Gold Rules_. (Later in the
+paper we make an effort to weed out _Gold Rules_ with low support/confidence when measured against the
+Gold Set of Dockerfiles.) 
+
+### Example Usage
+
+```typescript
+// Import the rules
+import { RULES as ALL_RULES } from './gold-rules';
+
+// Use a type (like this example) to give some structure to 
+// the encoding
+type Subtree = any;
+export const RULES = [
+  ...ALL_RULES
+] as Array<{
+  scope: 'INTRA-DIRECTIVE' | 'INTER-DIRECTIVE',
+  kind: 'CONSEQUENT-FOLLOWS-ANTECEDENT' 
+    | 'CONSEQUENT-FLAG-OF-ANTECEDENT'
+    | 'CONSEQUENT-PRECEDES-ANTECEDENT',
+  name: string,
+  description: string,
+  antecedent: Subtree,
+  consequent: { matchAnyBound: Subtree },
+  source: string,
+  notes: string|undefined
+}>;
+
+// ... do whatever processing/checking you wish 
+```
+
+### Dataset Statistics
+
+Size:
+```
+gold-rules.ts: 16KB
+```
+
+Count:
+```
+gold-rules.ts: 23 rules (encoded as TypeScript objects)
+```
+
+Hashes:
+```
+gold-rules.ts:
+170fe0e573e935039ab795530a023dcf22fc51a56d4b830a8453f2201f97536d
+```
+
+Verify hashes with:
+```bash
+# github
+cat ./6-gold-rules/gold-rules.ts | sha256sum | awk '{ print $1 }'
+```
+
 ---
 
 ## Notes
