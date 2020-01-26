@@ -1,0 +1,230 @@
+\documentclass[12pt]{article}
+
+\usepackage[landscape]{geometry}
+
+\usepackage{adjustbox}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{cleveref}
+\usepackage{enumitem}
+\usepackage{filecontents}
+\usepackage{flushend}
+\usepackage[final]{listings}
+\usepackage{makecell}
+\usepackage{mathpartir}
+\usepackage{newverbs}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{savesym}
+\usepackage{soul}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{xspace}
+
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{pgfplots.groupplots}
+
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
+\begin{document}
+
+\pgfplotsset{
+    every non boxed x axis/.style={} 
+}
+
+\newsavebox\phasedhistoone
+\begin{lrbox}{\phasedhistoone}
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group name=eu-histo-3,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=-1pt
+    },
+    width=9cm,
+    axis y line*=left,
+    tick pos=left,
+    typeset ticklabels with strut,
+    xmin=0,
+    xmax=100,
+    xtick={0,10,...,100},
+    enlarge x limits=0.075,
+    xmajorgrids=false,
+    xlabel={\% of \emph{EU} leaves}
+]
+
+\nextgroupplot[
+    ybar,
+    bar shift=2.5,
+    bar width=5.0,
+    ymin=0.35,
+    ymax=1.0,
+    ytick={0.60,0.80,1.0},
+    axis x line=none, 
+    axis y discontinuity=parallel,
+    height=3.0cm
+]
+\fill [green!30] (\eudatum{eu_q25_one},0) rectangle (\eudatum{eu_q75_one},500);
+
+\nextgroupplot[
+    ybar,
+    bar shift=2.5,
+    bar width=5.0,
+    ymin=0.0,
+    ymax=0.35,
+    axis x line=bottom,
+    height=4.0cm,
+    ylabel={Density}
+]
+\fill [green!30] (\eudatum{eu_q25_one},0) rectangle (\eudatum{eu_q75_one},500);
+\addplot table [x=X,y=Density,col sep=tab] {eu-metric-1.tsv};
+
+\end{groupplot}
+\end{tikzpicture}
+\end{lrbox}
+
+\newsavebox\phasedhistotwo
+\begin{lrbox}{\phasedhistotwo}
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group name=eu-histo-3,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=-1pt
+    },
+    width=9cm,
+    axis y line*=left,
+    tick pos=left,
+    typeset ticklabels with strut,
+    xmin=0,
+    xmax=100,
+    xtick={0,10,...,100},
+    enlarge x limits=0.075,
+    xmajorgrids=false,
+    xlabel={\% of \emph{EU} leaves}
+]
+
+\nextgroupplot[
+    ybar,
+    bar shift=2.5,
+    bar width=5.0,
+    ymin=0.35,
+    ymax=1.0,
+    ytick={0.60,0.80,1.0},
+    axis x line=none, 
+    axis y discontinuity=parallel,
+    height=3.0cm
+]
+\fill [green!30] (\eudatum{eu_q25_two},0) rectangle (\eudatum{eu_q75_two},500);
+
+\nextgroupplot[
+    ybar,
+    bar shift=2.5,
+    bar width=5.0,
+    ymin=0.0,
+    ymax=0.35,
+    axis x line=bottom,
+    height=4.0cm,
+    ylabel={Density}
+]
+\fill [green!30] (\eudatum{eu_q25_two},0) rectangle (\eudatum{eu_q75_two},500);
+\addplot table [x=X,y=Density,col sep=tab] {eu-metric-2.tsv};
+
+\end{groupplot}
+\end{tikzpicture}
+\end{lrbox}
+
+\newsavebox\phasedhistothree
+\begin{lrbox}{\phasedhistothree}
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group name=eu-histo-3,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=-1pt
+    },
+    width=9cm,
+    axis y line*=left,
+    tick pos=left,
+    typeset ticklabels with strut,
+    xmin=0,
+    xmax=100,
+    xtick={0,10,...,100},
+    enlarge x limits=0.075,
+    xmajorgrids=false,
+    xlabel={\% of \emph{EU} leaves that remain unresolved}
+]
+
+\nextgroupplot[
+    ybar,
+    bar shift=0.5,
+    bar width=1.0,
+    ymin=0.35,
+    ymax=1.0,
+    ytick={0.60,0.80,1.0},
+    axis x line=none, 
+    axis y discontinuity=parallel,
+    height=3.0cm
+]
+\fill [green!30] (\eudatum{eu_q25_three},0) rectangle (\eudatum{eu_q75_three},500);
+\addplot table [x=X,y=Density,col sep=tab] {eu-metric-3b.tsv};
+
+\nextgroupplot[
+    ybar,
+    bar shift=0.5,
+    bar width=1.0,
+    ymin=0.0,
+    ymax=0.35,
+    axis x line=bottom,
+    height=4.0cm,
+    ylabel={Density}
+]
+\fill [green!30] (\eudatum{eu_q25_three},0) rectangle (\eudatum{eu_q75_three},500);
+\addplot table [x=X,y=Density,col sep=tab] {eu-metric-3.tsv};
+
+\end{groupplot}
+\end{tikzpicture}
+\end{lrbox}
+
+\begin{figure*}
+\centering
+\begin{adjustbox}{minipage=.30\textwidth}
+    \centering\resizebox{\textwidth}{!}{\trimbox{0cm 0cm 0cm 0cm}{\usebox\phasedhistoone}}
+\end{adjustbox}%
+\begin{adjustbox}{minipage=.30\textwidth}
+    \centering\resizebox{\textwidth}{!}{\trimbox{0cm 0cm 0cm 0cm}{\usebox\phasedhistotwo}}
+\end{adjustbox}%
+\begin{adjustbox}{minipage=.40\textwidth}
+    \centering\resizebox{\textwidth}{!}{\trimbox{0cm 0cm 0cm 0cm}{\usebox\phasedhistothree}}
+\end{adjustbox}%
+\par
+\centering
+\begin{adjustbox}{minipage=.30\textwidth}
+\centering\captionsetup[subfigure]{width=.85\linewidth}
+\subcaption{Density histogram of M1 (the fraction of leaves that are \emph{EU} after
+the first phase of parsing). On average, \eudatum{eu_mean_one}\% of leaves (median \eudatum{eu_median_one}\%) are \emph{EU}
+at this phase.\label{Fi:PhasedHistoM1}}
+\end{adjustbox}%
+\begin{adjustbox}{minipage=.30\textwidth}
+\centering\captionsetup[subfigure]{width=.85\linewidth}
+\subcaption{Density histogram of M2 (the fraction of leaves that are \emph{EU} after
+the second phase of parsing). On average, \eudatum{eu_mean_two}\% of leaves (median \eudatum{eu_median_two}\%) are \emph{EU}
+at this phase.\label{Fi:PhasedHistoM2}}
+\end{adjustbox}%
+\begin{adjustbox}{minipage=.40\textwidth}
+\centering\captionsetup[subfigure]{width=.85\linewidth}
+\subcaption{Density histogram of M3 (the fraction of leaves that were \emph{EU} after
+the second phase of parsing and unresolved in the third phase). On average,
+just \eudatum{eu_mean_three}\% of leaves (median \eudatum{eu_median_three}\%) remained \emph{EU}.\label{Fi:PhasedHistoM3}}
+\end{adjustbox}
+\captionsetup{width=0.8\linewidth}
+\caption{Density histograms showing the distributions of our three metrics (M1,M2, and M3). The green
+shaded box in each plot highlights the interquartile range for each distribution (the middle 50\%).\label{Fi:Distributions}}
+\end{figure*}
+
+\end{document}
