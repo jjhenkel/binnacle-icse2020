@@ -1,9 +1,0 @@
-/app/idioms/bin/Debug/netcoreapp2.2/idioms.deps.json
-/app/idioms/bin/Debug/netcoreapp2.2/idioms.runtimeconfig.json
-/app/idioms/bin/Debug/netcoreapp2.2/idioms.runtimeconfig.dev.json
-/app/idioms/bin/Debug/netcoreapp2.2/idioms.dll
-/app/idioms/bin/Debug/netcoreapp2.2/idioms.pdb
-/app/idioms/obj/Debug/netcoreapp2.2/idioms.csprojAssemblyReference.cache
-/app/idioms/obj/Debug/netcoreapp2.2/idioms.csproj.CoreCompileInputs.cache
-/app/idioms/obj/Debug/netcoreapp2.2/idioms.dll
-/app/idioms/obj/Debug/netcoreapp2.2/idioms.pdb

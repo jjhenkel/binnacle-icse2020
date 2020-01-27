@@ -29,7 +29,9 @@ for t in $(cat /app/new-node-types-phase-3.txt); do
 
   if [ "${COUNT}" -ge "50" ]; then
     echo "  + Mining idioms for nodes rooted at \"${t}\":"
-    echo -n "${SELECTED_SUBTRESS}" | dotnet run --no-restore >> /mnt/outputs/mined-rules.json
+    echo -n "${SELECTED_SUBTRESS}" \
+      | /app/idioms/bin/Release/netcoreapp2.2/ubuntu.14.04-x64/publish/idioms \
+    >> /mnt/outputs/mined-rules.json
     echo "    + $(cat /mnt/outputs/mined-rules.json | wc -l) idiom(s) discovered so far"
   else
     echo "  - Not mining idioms for nodes rooted at \"${t}\": only ${COUNT} < (min-support=50) such trees"
