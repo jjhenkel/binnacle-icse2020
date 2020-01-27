@@ -21,7 +21,7 @@ For inspecting data locally (without the use of Docker) the following tools are 
 
 ## Installation
 
-See `./INSTALL.md` or just run:
+Run:
 
 ```bash
 git clone https://github.com/jjhenkel/binnacle-icse2020.git
@@ -63,6 +63,8 @@ To reproduce our mined rules the following script can be used:
 Doing the above should produce the following file (containing a JSON encoding of the mined rules): `./experiments/2-automated-rule-mining/experiment/mined-rules.json`.
 
 For reference, we have included an example of the rules that should be mined at: `./experiments/2-automated-rule-mining/experiment/mined-rules-example.json`.
+
+**Note:** during testing, we've had issues with running this container on Docker installations that are running inside of a Virtual Machine (specifically, an Ubuntu VM, with Docker, on a Windows host). If you attempt to run this in a Linux VM, on a Windows host, and the container hangs, it's likely this issue. (We, unfortunately, have not found any reliable work-arounds for this issue.)
 
 ### RQ3 - Rule Enforcement
 
