@@ -1,5 +1,5 @@
 keyName,ruleName,bashBestPractice,immediateImpact,futureImpact,goldSupport,goldConfidence
-pipUseNoCacheDir,pipUseCacheDir,No,Space wastage,Increased attack surface
+pipUseNoCacheDir,pipUseNoCacheDir,No,Space wastage,Increased attack surface
 npmCacheCleanUseForce,npmCacheCleanUseForce,No,Space wastage,Increased attack surface
 mkdirUsrSrcThenRemove,mkdirUsrSrcThenRemove,Yes,Space wastage,Increased attack surface
 rmRecursiveAfterMktempD,rmRecurisveAfterMktempD,Yes,Space wastage,Increased attack surface
