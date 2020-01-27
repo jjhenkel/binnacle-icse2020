@@ -4,11 +4,6 @@ cd /app/idioms
 
 trap "echo 'CTRL-C Pressed. Quiting...'; exit;" SIGINT SIGTERM
 
-echo "Building..."
-# Build miner (C# project)
-dotnet build &> /dev/null
-echo "  + Done!"
-
 echo "Extracting..."
 # Extract abstracted asts to /tmp
 cat /datasets/4-abstracted-asts/gold.jsonl.xz \
