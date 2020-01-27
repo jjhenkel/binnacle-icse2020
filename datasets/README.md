@@ -1,12 +1,14 @@
 # Datasets
 
-This directory provides our datasets of Dockerfiles. We have included the datasets in each of the (many) representations they pass through prior to rule mining. In doing so, we hope that others can expand, improve, revise, and compare this rule mining pipeline.
+This directory provides our datasets of Dockerfiles. We have included the datasets in each of the (many) representations they pass through prior to rule mining. In doing so, we hope that others can expand, improve, revise, and compare with our rule mining pipeline.
 
-Each sub-folder will have a `github.*` file and a, substantially smaller, `gold.*` file. The `github.*` files correspond to our set of (~250,000 original, ~180,000 deduplicated) Dockerfiles sourced from GitHub. The `gold.*` files correspond to the subset of the GitHub data that originated in the `docker-library/` GitHub organization. The `docker-library/` organization is run by Docker and contains file of, presumably, high quality.
+Each sub-folder (except `./6-gold-rules`) will have a `github.*` file and a, substantially smaller, `gold.*` file. The `github.*` files correspond to our set of (~220,000 original, ~180,000 deduplicated) Dockerfiles sourced from GitHub. The `gold.*` files correspond to the subset of the GitHub data that originated in the `docker-library/` GitHub organization. The `docker-library/` organization is run by Docker and contains files of, presumably, high quality.
 
 ## (0a) `datasets/0a-original-dockerfile-sources`
 
-This representation has the original Dockerfiles at the source level. These were downloaded directly from GitHub and, at this stage, have had no processing of any kind applied. They were selected using a, very permissive, file-name-based filter: `*.(D|d)ockerfile.*` .
+This representation has the original Dockerfiles at the source level. These were downloaded directly from GitHub and, at this stage, have had no processing of any kind applied. They were selected using a, very permissive, file-name-based filter: `*.(D|d)ockerfile.*`.
+
+This selector yields closer to ~250,000 files, we only kept files that passed a very basic syntactic validation; namely, we rejected files that failed to parse using the Python `dockerfile` parser package.
 
 ### Example Usage
 
@@ -75,7 +77,7 @@ Here we have the Dockerfiles that are unique based on a hash of their contents. 
 
 ### Example Usage
 
-**Representation:** this dataset is an archive file (format: `.tar.xz`) that, when extracted, yields a directory where each Dockerfile and has a filename based on the unique sha hash of that file.
+**Representation:** this dataset is an archive file (format: `.tar.xz`) that, when extracted, yields a directory with each of the unique (source level) Dockerfiles. The filenames correspond to the unique SHA hash of each file.
 
 **Example:** 
 ```bash
