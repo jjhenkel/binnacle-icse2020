@@ -2,7 +2,7 @@
 
 We would like to apply for the `Reusable` and `Available` badges:
 
-1. We have made our artifact available on GitHub and placed a GitHub release on Zenodo to obtain a DOI
+1. We have made our artifact available on GitHub and placed a GitHub release on Zenodo to obtain a DOI (`10.5281/zenodo.3628771`)
 
 2. We have provided both the dependencies for running our tools (via Docker) and documentation (in this repository)
 
