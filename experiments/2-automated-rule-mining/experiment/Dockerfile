@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1.1
 
 RUN apt-get update && apt-get install -y --no-install-recommends jq xz-utils
 
