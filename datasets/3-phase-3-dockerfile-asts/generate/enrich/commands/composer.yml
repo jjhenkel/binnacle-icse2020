@@ -1,0 +1,26 @@
+command:
+  providerFor:
+    - composer
+  prefix: SC-COMPOSER
+  optionsInstall: &optionsInstall
+    booleans:
+      - --prefer-source
+      - --prefer-dist
+      - --dry-run
+      - --dev
+      - --no-dev
+      - --no-autoloader
+      - --no-scripts
+      - --no-progress
+      - --no-suggest
+      - -o, --optimize-autoloader
+      - -a, --classmap-authoritative
+      - --apcu-autoloader
+      - --ignore-platform-reqs
+  scenarios:
+    - cmd: $0 install
+      options: *optionsInstall
+      name: SC-COMPOSER-INSTALL
+    - cmd: $0 i
+      options: *optionsInstall
+      name: SC-COMPOSER-INSTALL

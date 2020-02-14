@@ -1,0 +1,24 @@
+command:
+  providerFor:
+    - pecl
+  prefix: SC-PECL
+  options: &optionsInstall
+    booleans:
+      - -v, --verbose
+      - -q, --quiet
+      - -S, --store-system-config
+      - -s, --store-user-config
+      - -V, --version
+      - -?, --help
+      - -h, --help
+    strings:
+      - -y, --unset-user-config-var
+      - -d, --user-config-var
+      - -D, --system-config-var
+    paths:
+      - -c, --user-config
+      - -C, --system-config
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-PECL-INSTALL

@@ -1,0 +1,47 @@
+command:
+  providerFor:
+    - conda
+  prefix: SC-CONDA
+  optionsInstall: &optionsInstall
+    booleans:
+      - -h, --help
+      - --use-local
+      - --override-channels
+      - --strict-channel-priority
+      - --no-channel-priority
+      - --no-deps
+      - --only-deps
+      - --no-pin
+      - --copy
+      - -C
+      - -k
+      - --offline
+      - -d
+      - --json
+      - -q
+      - -v
+      - -y
+      - --download-only
+      - --show-channel-urls
+      - --force-reinstall
+      - --freeze-installed
+      - --updated-deps
+      - -S
+      - --update-all
+      - --update-specs
+      - -m
+      - --clobber
+      - --dev
+    strings:
+      - --revision
+      - -n, --env
+      - -c, --channel
+    paths:
+      - -p, --env-path
+      - --file
+    arrays:
+      - --repodata-fn
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-CONDA-INSTALL

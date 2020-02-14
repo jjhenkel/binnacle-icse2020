@@ -1,0 +1,44 @@
+command:
+  providerFor:
+    - mvn
+  prefix: SC-MVN
+  optionsInstall: &optionsInstall
+    booleans:
+      - -am, --also-make
+      - -amd, --also-make-dependents
+      - -B, --batch-mode
+      - -c, --lax-checksums
+      - -C, --strict-checksums
+      - -cpu, --check-plugin-updates
+      - -e, --errors
+      - -fae, --fail-at-end
+      - -ff, -fail-fase
+      - -fn, --fail-never
+      - -h, --help
+      - -N, --non-recursive
+      - -npr, --no-plugin-registry
+      - -npu, --no-plugin-updates
+      - -o, --offline
+      - -q, --quiet
+      - -r, --reactor
+      - -U, --update-snapshots
+      - -up, --update-plugin
+      - -V, --show-version
+      - -v, --version
+      - -X, --debug
+    strings:
+      - -emp, --encrypt-master-password
+      - -ep, --encrypt-password
+      - -P, --active-profiles
+      - -rf, --resume-from
+    paths:
+      - -s, --settings
+      - -f, --file 
+      - -gs, --global-settings
+    arrays:
+      - -D, --define
+      - -pl, --projects
+  scenarios:
+    - cmd: $0 install
+      options: *optionsInstall
+      name: SC-MVN-INSTALL

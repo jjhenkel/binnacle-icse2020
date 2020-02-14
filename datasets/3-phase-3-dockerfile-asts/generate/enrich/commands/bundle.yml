@@ -1,0 +1,38 @@
+command:
+  providerFor:
+    - bundle
+  prefix: SC-BUNDLE
+  optionsAll: &optionsAll
+    booleans:
+      - -v, --verbose
+      - --no-color
+    strings:
+      - -r, --retry 
+  optionsInstall: &optionsInstall
+    booleans:
+      - --clean
+      - --deployment
+      - --force
+      - --frozen
+      - --full-index
+      - --local
+      - --no-cache
+      - --no-prune
+      - --quiet
+      - --shebang
+      - --system
+    strings:
+      - --jobs
+      - --trust-policy
+    paths:
+      - --binstubs
+      - --gemfile
+    arrays:
+      - --standalone
+      - --with
+      - --without
+  scenarios:
+    - cmd: $0 install
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-BUNDLE-INSTALL

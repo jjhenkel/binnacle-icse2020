@@ -1,0 +1,67 @@
+command:
+  providerFor:
+    - opam
+  prefix: SC-OPAM
+  optionsAll: &optionsAll
+    booleans:
+      - --best-effort
+      - --debug
+      - --git-version
+      - --ignore-pin-depends
+      - --no-aspcud
+      - --no-auto-upgrade
+      - --no-self-upgrade
+      - -q, --quiet
+      - --safe
+      - --readonly
+      - --strict
+      - --use-internal-solver
+      - -v, --verbose
+      - --version
+      - -w, --working-dir
+      - -y, --yes
+    strings:
+      - --color
+      - --criteria
+      - --debug-level
+      - --help
+      - --solver
+      - --switch
+    paths:
+      - --cudf
+      - --json
+      - --root
+  optionsInstall: &optionsInstall
+    booleans:
+      - --assume-built
+      - --check
+      - --deps-only
+      - --restore
+      - --set-root
+      - --unset-root
+      - -b, --keep-build-dir
+      - -d, --with-doc, --build-doc
+      - --dry-run
+      - --fake
+      - --inplace-build
+      - --locked
+      - --no-checksums
+      - --require-checksums
+      - --reuse-build-dir
+      - --show-actions
+      - --skip-updates
+      - -t, --with-test, --build-test
+      - --unlock-base
+    strings:
+      - -m, --make
+      - --lock-suffix
+      - -j, --jobs
+    arrays:
+      - --ignore-constraints-on
+    paths:
+      - --destdir
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: 
+        merge: [*optionsAll, *optionsInstall]
+      name: SC-OPAM-INSTALL

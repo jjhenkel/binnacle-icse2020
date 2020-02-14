@@ -1,0 +1,15 @@
+command:
+  providerFor:
+    - bower
+  prefix: SC-BOWER
+  optionsInstall: &optionsInstall
+    booleans:
+      - -F, --force-latest
+      - -p, --production
+      - -S, --save
+      - -D, --save-dev
+      - -E, --save-exact
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-BOWER-INSTALL

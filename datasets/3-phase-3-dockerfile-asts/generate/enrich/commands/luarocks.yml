@@ -1,0 +1,22 @@
+command:
+  providerFor:
+    - luarocks
+  prefix: SC-LUAROCKS
+  notes: VAR=VALUE stuff may cause trouble... 
+  optionsInstall: &optionsInstall
+    booleans:
+      - --keep
+      - --only-deps
+      - --verbose 
+      - --local
+    strings:
+      - --deps-mode
+      - --timeout
+      - --tree
+      - --only-sources
+      - --only-server
+      - --server
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-LUAROCKS-INSTALL

@@ -1,0 +1,83 @@
+command:
+  providerFor:
+    - composer
+  prefix: SC-COMPOSER
+  optionsAll: &optionsAll
+    booleans:
+      - -h, --help
+      - -V, --version
+      - -v, --verbose
+      - -q, --quiet
+      - --color
+      - --no-color
+      - -A, --no-abbrev
+      - -t, --terse
+      - -n, --non-interactive
+      - --non-interactive-include-reboot-patches
+      - -x, --xmlout
+      - -i, --ignore-unknown
+      - --no-gpg-checks
+      - --gpg-auto-import-keys
+      - --disable-repositories
+      - --no-refresh
+      - --no-cd
+      - --no-remote
+      - --disable-system-resolvables
+    strings:
+      - --releasever
+      - -s, --table-style
+      - --userdata
+      - --plus-content
+      - -p, --plus-repo
+    paths:
+      - -R, --root
+      - --installroot
+      - -c, --config
+      - -D, --reposd-dir
+      - -C, --cache-dir
+      - --raw-cache-dir
+      - --solv-cache-dir
+      - --pkg-cache-dir
+  optionsInstall: &optionsInstall
+    booleans:
+      - -n, --name
+      - -f, --force
+      - --oldpackage
+      - -C, --capability
+      - -l, --auto-agree-with-licenses
+      - --auto-agree-with-product-licenses
+      - --replacefiles
+      - -D, --dry-run
+      - --details
+      - -y, --no-confirm
+      - --allow-unsigned-rpm
+      - --debug-solver
+      - --force-resolution
+      - -R, --no-force-resolution
+      - --recommends
+      - --no-recommends
+      - -d, --download-only
+      - --download-in-advance
+      - --download-in-heaps
+      - --download-as-needed
+      - --allow-downgrade
+      - --no-allow-downgrade
+      - --allow-name-change
+      - --no-allow-name-change
+      - --allow-arch-change
+      - --no-allow-arch-change
+      - --allow-vendor-change
+      - --no-allow-vendor-change
+    strings:
+      - -r, --repo
+      - -t, --type
+      - --from
+      - --solver-focus
+      - --download
+  scenarios:
+    - cmd: $0 install
+      options: *optionsInstall
+      name: SC-COMPOSER-INSTALL
+    - cmd: $0 in
+      options: *optionsInstall
+      name: SC-COMPOSER-INSTALL
