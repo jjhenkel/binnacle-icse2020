@@ -1,0 +1,150 @@
+command:
+  providerFor:
+    - choco
+  prefix: SC-CHOCO
+  optionsInstall: &optionsInstall
+    booleans:
+      - -?, --help
+      - -h, --help
+      - -d, --debug
+      - -v, --verbose
+      - --trace
+      - --nocolor, --no-color
+      - --acceptlicense, --accept-license
+      - -y, --yes
+      - --confirm
+      - -f, --force
+      - --noop, --dry-run
+      - --whatif, --dry-run
+      - --what-if, --dry-run
+      - -r, --limit-output
+      - --limitoutput, --limit-output
+      - --allowunofficial, --allow-unofficial
+      - --allowunofficialbuild, --allow-unofficial-build
+      - --failstderr, --fail-on-stderr
+      - --failonstderr, --fail-on-stderr
+      - --fail-on-standard-error, --fail-on-stderr
+      - --fail-on-error-output, --fail-on-stderr
+      - --use-system-powershell
+      - --no-progress
+      - --proxy-bypass-on-local 
+      - --pre, --prerelease
+      - --x86, --forcex86
+      - --notsilent, --not-silent
+      - -m, --allow-multiple
+      - --sxs, --allow-multiple
+      - --side-by-side, --allow-multiple
+      - --allowmultiple, --allow-multiple
+      - --allow-multiple-versions, --allow-multiple
+      - --allowmultipleversions, --allow-multiple
+      - --allowdowngrade, --allow-downgrade
+      - --argsglobal, --args-global
+      - --installargsglobal, --args-global
+      - --install-args-global, --args-global
+      - --applyargstodependencies, --args-global
+      - --apply-args-to-dependencies, --args-global
+      - --apply-install-arguments-to-dependencies, --args-global
+      - --paramsglobal, --params-global
+      - --packageparametersglobal, --params-global
+      - --package-parameters-global, --params-global
+      - --applyparamstodependencies, --params-global
+      - --apply-params-to-dependencies, --params-global
+      - --apply-package-parameters-to-dependencies, --params-global
+      - -i, --ignore-dependencies
+      - --ignoredependencies, --ignore-dependencies
+      - -x, --force-dependencies
+      - --forcedependencies, --force-dependencies
+      - --reduce-nupkg-only, --deflate-nupkg-only
+      - --no-reduce, --no-deflate
+      - --no-reduce-package-size, --no-deflate
+      - --no-deflate-package-size, --no-deflate
+      - --reduce, --deflate
+      - --reduce-package-size, --deflate
+      - --deflate-package-size, --deflate
+      - --virus, --virus-check
+      - --viruscheck, --virus-check
+      - --svc, --skip-virus-check
+      - --skipvirus, --skip-virus-check
+      - --skipviruscheck, --skip-virus-check
+      - --skip-virus, --skip-virus-check
+      - --dc, --download-cache
+      - --downloadcache, --download-cache
+      - --use-download-cache, --download-cache
+      - --sdc, --skip-download-cache
+      - --skipdownloadcache, --skip-download-cache
+      - --ignoredetectedreboot, --ignore-detected-reboot
+      - --exitwhenrebootdetected, --exit-when-reboot-detected
+      - --stoponfirstfailure, --stop-on-first-failure
+      - --stop-on-first-package-failure, --stop-on-first-failure
+      - --ignorechecksum, --ignore-checksum
+      - --ignorechecksums, --ignore-checksum
+      - --ignore-checksums, --ignore-checksum
+      - --allowemptychecksum, --allow-empty-checksums
+      - --allowemptychecksums, --allow-empty-checksums
+      - --allowemptychecksumsecure, --allow-empty-checksums-secure
+      - --allowemptychecksumssecure, --allow-empty-checksums-secure
+      - --requirechecksum, --require-checksums
+      - --requirechecksums, --require-checksums
+      - --ignorepackagecodes, --ignore-package-codes
+      - --ignorepackageexitcodes, --ignore-package-codes
+      - --ignore-package-exit-codes, --ignore-package-codes
+      - --usepackagecodes, --use-package-codes
+      - --usepackageexitcodes, --use-package-codes
+      - --use-package-exit-codes, --use-package-codes
+    strings:
+      - --timeout
+      - --proxy
+      - --proxy-user
+      - --proxy-password
+      - --proxy-bypass-list
+      - --execution-timeout
+      - -s, --source
+      - --version
+      - --ia, --install-arguments
+      - --installargs, --install-arguments
+      - --installarguments, --install-arguments
+      - --params, --parameters
+      - --pkgparameters, --parameters
+      - --packageparameters, --parameters
+      - --package-parameters, --parameters
+      - -u, --user
+      - -p, --password
+      - --cert
+      - --cp, --certpassword
+      - --viruspositivesmin, --virus-positivies-minimum
+      - --install-arguments-sensitive
+      - --package-parameters-sensitive
+      - --bps, --max-download-rate
+      - --maxdownloadrate, --max-download-rate
+      - --maxdownloadbitspersecond, --max-download-rate
+      - --max-download-bits-per-second, --max-download-rate
+      - --maximumdownloadbitspersecond, --max-download-rate
+      - --maximum-download-bits-per-second, --max-download-rate
+      - --checksum, --download-checksum
+      - --downloadchecksum, --download-checksum
+      - --checksum64, --download-checksum-x64
+      - --checksumx64, --download-checksum-x64
+      - --downloadchecksumx64, --download-checksum-x64
+      - --checksumtype, --checksum-type
+      - --downloadchecksumtype, --checksum-type
+      - --download-checksum-type, --checksum-type
+      - --checksumtype64, --checksum-type-x64
+      - --checksumtypex64, --checksum-type-x64
+      - --downloadchecksumtypex64, --checksum-type-x64
+      - --download-checksum-type-x64, --checksum-type-x64
+    paths:
+      - -c, --cache
+      - --cachelocation
+      - --cache-location
+      - --log-file
+      - --dir, --install-dir
+      - --directory, --install-dir
+      - --installdir, --install-dir
+      - --installdirectory, --install-dir
+      - --install-directory, --install-dir
+  scenarios:
+    - cmd: $0 install [packages...]
+      alsoProviderFor:
+        - cinst
+      options: *optionsInstall
+      name: SC-CHOCO-INSTALL

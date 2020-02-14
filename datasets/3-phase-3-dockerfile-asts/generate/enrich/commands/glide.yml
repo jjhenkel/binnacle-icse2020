@@ -1,0 +1,8 @@
+command:
+  providerFor:
+    - glide
+  prefix: SC-GLIDE
+  scenarios:
+    - cmd: $0 install
+      options:
+      name: SC-GLIDE-INSTALL

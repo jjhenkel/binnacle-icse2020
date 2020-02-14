@@ -2,6 +2,21 @@ command:
   providerFor:
     - mvn
   prefix: SC-MVN
+  fixThese: &fixThese
+    - -am
+    - -amd
+    - -cpu
+    - -fae
+    - -ff
+    - -fn
+    - -npr
+    - -npu
+    - -up
+    - -emp
+    - -ep
+    - -rf
+    - -gs
+    - -pl
   optionsInstall: &optionsInstall
     booleans:
       - -am, --also-make
@@ -40,5 +55,6 @@ command:
       - -pl, --projects
   scenarios:
     - cmd: $0 install
+      fixBadLongNames: *fixThese
       options: *optionsInstall
       name: SC-MVN-INSTALL

@@ -1,0 +1,162 @@
+command:
+  providerFor:
+    - cabal
+  prefix: SC-CABAL
+  optionsAll: &optionsAll
+    booleans:
+      - -h, --help
+      - -V, --version
+      - --numeric-version
+      - --require-sandbox
+      - --no-require-sandbox
+      - --ignore-sandbox
+      - --ignore-expiry
+      - --enable-nix
+      - --disable-nix
+    strings:
+      - --http-transport
+    paths:
+      - --config-file
+      - --sandbox-config-file
+      - --default-user-config 
+  optionsInstall: &optionsInstall
+    booleans:
+      - -g, --ghc
+      - -ghcjs
+      - --jhc
+      - --lhc
+      - --uhc
+      - --haskell-suite
+      - --enable-library-vanilla
+      - --disable-library-vaniall
+      - -p, --enable-library-profiling
+      - --disable-library-profiling
+      - --enable-shared
+      - --disable-shared
+      - --enable-static
+      - --disable-static
+      - --enable-executable-dynamic
+      - --disable-executable-dynamic
+      - --enable-profiling
+      - --disable-profiling
+      - --enable-executable-profiling
+      - --disable-executable-profiling
+      - --disable-optimization
+      - --disable-debug-info
+      - --enable-library-for-ghci
+      - --disable-library-for-ghci
+      - --enable-split-sections
+      - --disable-split-sections
+      - --enable-split-objs 
+      - --disable-split-objs
+      - --enable-executable-stripping
+      - --disable-executable-stripping
+      - --enable-library-stripping
+      - --disable-library-stripping
+      - --user
+      - --global
+      - --enable-deterministic
+      - --disable-deterministic
+      - --enable-tests
+      - --disable-tests
+      - --enable-coverage
+      - --disable-coverage
+      - --enable-library-coverage
+      - --disable-library-coverage
+      - --enable-benchmarks
+      - --disable-benchmarks
+      - --enable-relocatable
+      - --disable-relocatable
+      - --disable-response-files
+      - --enable-documentation
+      - --disable-documentation
+      - --dry-run
+      - --reorder-goals
+      - --count-conflicts
+      - --independent-goals
+      - --shadow-installed-packages
+      - --strong-flags
+      - --allow-boot-library-installs
+      - --reinstall
+      - --avoid-reinstalls
+      - --force-reinstalls
+      - --update-dependencies
+      - --only-dependencies
+      - --dependencies-only
+      - --report-planning-failure
+      - --enable-per-component
+      - --disable-per-component
+      - --one-shot
+      - --run-tests
+      - --keep-going
+      - --offline
+      - --haddock-hoogle
+      - --haddock-html
+      - --haddock-for-hackage
+      - --haddock-executables
+      - --haddock-tests
+      - --haddock-benchmarks
+      - --haddock-all
+      - --haddock-internal
+      - --haddock-hyperlink-source
+    strings:
+      - -j, --jobs
+      - -v, --verbose
+      - --program-prefix
+      - --program-suffix
+      - --profiling-detail
+      - --library-profiling-detail
+      - -O, --enable-optimization
+      - --enable-debug-info
+      - --configure-option
+      - --package-db
+      - -f, --flags
+      - --instantiate-with
+      - --ipid
+      - --cid
+      - --cabal-lib-version
+      - --constraint
+      - --preference
+      - --solver
+      - --max-backjumps
+      - --haddock-html-location      
+      - --haddock-contents-location
+    paths:
+      - --haddock-css
+      - --haddock-hscolour-css
+      - --symlink-bindir
+      - --index-state
+      - --root-cmd
+      - --build-summary
+      - --build-log
+      - --remote-build-reporting
+      - --project-file
+      - --doc-index-file
+      - --builddir
+      - --cabal-file
+      - -w, --with-compiler
+      - --with-hc-pkg
+      - --prefix
+      - --bindir
+      - --libdir
+      - --libsubdir
+      - --dynlibdir
+      - --libexecdir
+      - --libexecsubdir
+      - --datadir
+      - --datasubdir
+      - --docdir
+      - --htmldir
+      - --haddockdir
+      - --sysconfdir
+      - --extra-include-dirs
+      - --extra-framework-dirs
+      - --extra-prog-path
+    arrays:
+      - --allow-older
+      - --allow-newer
+  scenarios:
+    - cmd: $0 install [packages...]
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-CABAL-INSTALL

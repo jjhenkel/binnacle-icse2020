@@ -1,0 +1,30 @@
+command:
+  providerFor:
+    - brew
+  prefix: SC-BREW
+  optionsInstall: &optionsInstall
+    booleans:
+      - -d, --debug
+      - --ignore-dependencies
+      - --only-dependencies
+      - -s, --build-from-source
+      - --force-bottle
+      - --include-test
+      - --devel
+      - --HEAD
+      - --fetch-HEAD
+      - --keep-tmp
+      - --build-bottle
+      - -f, --force
+      - -v, --verbose
+      - --display-times
+      - -i, --interactive
+      - -g, --git
+    strings:
+      - --env
+      - --cc
+      - --bottle-arch
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-BREW-INSTALL

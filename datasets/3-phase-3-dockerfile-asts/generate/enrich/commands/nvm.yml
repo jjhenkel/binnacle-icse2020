@@ -1,0 +1,14 @@
+command:
+  providerFor:
+    - nvm
+  prefix: SC-NVM
+  optionsInstall: &optionsInstall
+    booleans:
+      - --latest-npm
+    strings:
+      - --reinstall-packages-from
+      - --lts
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-NVM-INSTALL

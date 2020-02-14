@@ -1,0 +1,42 @@
+command:
+  providerFor:
+    - cargo
+  prefix: SC-CARGO
+  optionsInstall: &optionsInstall
+    booleans:
+      - --list
+      - -f, --force
+      - --no-track
+      - --bins
+      - --examples
+      - --all-features
+      - --no-default-features
+      - --debug
+      - --frozen
+      - --locked
+      - --offline
+      - -v, --verbose
+      - -q, --quiet
+      - -h, --help
+    strings:
+      - --color
+      - -j, --jobs
+      - --target
+      - --registry
+      - --bin
+      - --example
+      - --rev
+      - --tag
+      - --branch
+      - --git
+      - --vers
+      - --version
+    paths:
+      - --root
+      - --path
+    arrays:
+      - --features
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-CARGO-INSTALL

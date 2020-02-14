@@ -1,0 +1,14 @@
+command:
+  providerFor:
+    - bitnami-pkg
+  prefix: SC-BITNAMI-PKG
+  optionsInstall: &optionsInstall
+    booleans:
+      - -h, --help
+    strings:
+      - -c, --checksum
+      - -b, --bucket
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-BITNAMI-PKG-INSTALL

@@ -1,0 +1,30 @@
+command:
+  providerFor:
+    - pipenv
+  prefix: SC-PIPENV
+  optionsInstall: &optionsInstall
+    booleans:
+      - --where
+      - --venv
+      - --py
+      - --envs
+      - --rm
+      - --bare
+      - --completion
+      - --man
+      - --two
+      - --three
+      - --site-packages
+      - --version
+      - -h, --help
+      - --dev
+      - --system
+      - --deploy
+      - --ignore-pipfile
+      - --skip-lock
+    strings:
+      - --python
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-PIPENV-INSTALL
