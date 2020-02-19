@@ -54,7 +54,8 @@ command:
       - -D, --define
       - -pl, --projects
   scenarios:
-    - cmd: $0 install
+    - cmd: $0 install [args...]
+      fixupNonSpacedArgs: true
       fixBadLongNames: *fixThese
       options: *optionsInstall
       name: SC-MVN-INSTALL

@@ -75,9 +75,9 @@ command:
       - --solver-focus
       - --download
   scenarios:
-    - cmd: $0 install
+    - cmd: $0 install [packages...]
       options: *optionsInstall
       name: SC-ZYPPER-INSTALL
-    - cmd: $0 in
+    - cmd: $0 in [packages...]
       options: *optionsInstall
       name: SC-ZYPPER-INSTALL

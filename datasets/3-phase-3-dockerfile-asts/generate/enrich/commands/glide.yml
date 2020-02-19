@@ -5,4 +5,5 @@ command:
   scenarios:
     - cmd: $0 install
       options:
+        booleans: []
       name: SC-GLIDE-INSTALL

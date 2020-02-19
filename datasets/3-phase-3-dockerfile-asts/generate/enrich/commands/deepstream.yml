@@ -1,8 +1,0 @@
-command:
-  providerFor:
-    - deepstream
-  prefix: SC-DEEPSTREAM
-  scenarios:
-    - cmd: $0 install [packages...]
-      options:
-      name: SC-DEEPSTREAM-INSTALL
