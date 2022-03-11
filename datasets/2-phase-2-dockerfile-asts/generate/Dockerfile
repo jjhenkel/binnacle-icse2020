@@ -4,6 +4,7 @@ RUN git clone \
     https://github.com/koalaman/shellcheck.git \
     /shellcheck \
   && cd /shellcheck \
+  && git checkout 37e78141bd57f56b2a8d7ec0c91e76edec6a9dc5 \
   && cabal update \
   && cabal install \
   && cabal build
@@ -14,7 +15,7 @@ RUN echo "deb http://archive.debian.org/debian jessie-backports main" \
   apt-get -o Acquire::Check-Valid-Until=false update; \
   apt-get install -y --no-install-recommends jq python3 python3-pip   
 
-RUN pip3 install tqdm
+RUN pip3 install tqdm==4.27.0
 
 WORKDIR /app
 
