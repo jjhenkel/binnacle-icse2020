@@ -2,7 +2,7 @@ FROM node:11.15.0-stretch
 
 RUN npm install -g \
   typescript \
-  yargs \
+  yargs@latest-13 \
   js-yaml \
   @types/node
 
