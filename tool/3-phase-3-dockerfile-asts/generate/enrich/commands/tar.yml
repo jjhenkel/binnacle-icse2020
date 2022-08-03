@@ -1,0 +1,125 @@
+command:
+  providerFor:
+    - tar
+  prefix: SC-TAR
+  scenarios:
+    - cmd: $0 [args...]
+      options:
+        boolean: 
+          - -x, --extract
+          - -z, --gzip
+          - -c, --create
+          - -A, --catenate
+          - -A, --concatenate
+          - -c, --create
+          - -t, --list
+          - -d, --diff
+          - -d, --compare
+          - --test-label
+          - --get
+          - --delete
+          - --acls
+          - --no-acls
+          - --no-selinux
+          - --no-xattrs
+          - --selinux
+          - --xattrs
+          - -u, --update
+          - -v, --verbose
+          - --help
+          - --version
+          - -k, --keep-old-files
+          - --keep-directory-symlink
+          - --keep-newer-files
+          - --no-overwrite-dir
+          - --overwrite
+          - --overwrite-dir
+          - --recursive-unlink
+          - --remove-files
+          - --skip-old-files
+          - -G, --incremental
+          - -n, --seek
+          - --no-seek
+          - --no-check-device
+          - --check-device
+          - -W, --verify
+          - -U, --unlink-first
+          - -S, --sparse
+          - -s, --preserve-order
+          - -s, --same-order
+          - -p, --preserve-permissions
+          - -p, --same-permissions
+          - --numeric-owner
+          - --no-same-owner
+          - --no-same-permissions
+          - --no-delay-directory-restore
+          - -m, --touch
+          - --clamp-mtime
+          - --delay-directory-restore
+          - -r, --append
+          - -t, --list
+          - -j, --bzip2
+          - -J, --xz
+          - -a, --auto-compress
+          - --lzip
+          - --lzma
+          - --lzop
+          - --ignore-command-error
+          - --no-ignore-command-error
+          - -O, --to-stdout
+          - --force-local
+          - -M, --multi-volume
+          - --no-auto-compress
+          - -z, --gunzip
+          - -Z, --compress
+          - -h, --dereference
+          - --hard-dereference
+          - -P, --absolute-names
+          - --one-file-system
+          - -l, --check-links
+          - --full-time
+          - --posix
+          - --old-archive
+          - --portability
+          - -B, --read-full-records
+          - -i, --ignore-zeros
+          - --unquote
+          - --null
+          - --recursion
+          - --no-recursion
+          - --no-verbatim-files-from
+          - --no-null
+          - --exclude-vcs
+          - --exclude-vcs-ignores
+          - --exclude-backups 
+          - --exclude-caches
+          - --exclude-caches-all
+          - --exclude-caches-under
+        strings:
+          - --exclude
+          - --exclude-ignore
+          - --exclude-ignore-recursive
+          - --exclude-tag
+          - --exclude-tag-all
+          - --exclude-tag-under
+          - --record-size
+          - -b, --blocking-factor
+          - -H, --format
+          - -V, --label
+          - -I
+          - -N, --newer
+          - --newer-mtime
+          - --suffix
+          - --transform
+          - --xform
+          - --strip
+          - --strip-components
+          - --xattrs-exclude
+          - --xattrs-include
+        paths:
+          - --add-file
+          - -f, --file
+          - -C, --directory
+        arrays:
+          - -T, --files-from
+      name: SC-TAR

@@ -1,0 +1,95 @@
+command:
+  prefix: SC-APT-GET
+  providerFor:
+    - apt-get
+  optionsAll: &optionsAll
+    booleans:
+      - -y, --yes
+      - -f, --fix-broken
+      - -m, --ignore-missing
+      - --fix-missing
+      - --allow-unauthenticated
+      - --allow-downgrades
+      - --allow-remove-essential
+      - --allow-change-held-packages
+      - -s, --simulate
+      - -u, --show-upgraded
+      - --no-install-recommends
+      - -h, --help
+      - -v, --version
+      - --purge
+      - --auto-remove
+      - --autoremove
+      - --force-yes
+    paths:
+      - -C, --config
+    counts:
+      - -q, --quiet
+    arrays:
+      - -o, --option
+  optionsInstall: &optionsInstall
+    booleans:
+      - -d, --download-only
+      - --no-download
+      - --upgrade
+      - --only-upgrade
+      - --just-print
+      - --dry-run
+      - --recon
+      - --no-act
+      - --assume-yes
+      - -u, --show-upgraded
+      - -V, --verbose-version
+      - -b, --compile
+      - --build
+      - --ignore-hold
+      - --no-upgrade
+      - --no-install-suggests
+      - --install-suggests
+      - --print-uris
+      - --reinstall
+      - --list-cleanup
+      - --trivial-only
+      - --no-remove
+      - --only-source
+  scenarios:
+    - cmd: $0 install [packages...]
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-APT-GET-INSTALL
+    - cmd: $0 purge [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-PURGE
+    - cmd: $0 remove [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-REMOVE
+    - cmd: $0 source <package>
+      options: *optionsAll
+      name: SC-APT-GET-SOURCE
+    - cmd: $0 build-dep [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-BUILD-DEP
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-GET-CLEAN
+    - cmd: $0 autoclean
+      options: *optionsAll
+      name: SC-APT-GET-AUTO-CLEAN
+    - cmd: $0 autoremove [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-AUTO-REMOVE
+    - cmd: $0 check
+      options: *optionsAll
+      name: SC-APT-GET-CHECK
+    - cmd: $0 update
+      options: *optionsAll
+      name: SC-APT-GET-UPDATE
+    - cmd: $0 upgrade [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-UPGRADE
+    - cmd: $0 dist-upgrade
+      options: *optionsAll
+      name: SC-APT-GET-DIST-UPGRADE
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-GET-CLEAN

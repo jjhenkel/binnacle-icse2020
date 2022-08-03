@@ -1,0 +1,20 @@
+command:
+  providerFor:
+    - mktemp
+  prefix: SC-MKTEMP
+  options: &options
+    booleans:
+      - -d, --directory
+      - -u, --dry-run
+      - -q, --quiet
+      - -t
+      - --help
+      - --version
+    strings:
+      - --suffix
+    paths:
+      - -p, --tmpdir
+  scenarios:
+    - cmd: $0 [template]
+      options: *options
+      name: SC-MKTEMP

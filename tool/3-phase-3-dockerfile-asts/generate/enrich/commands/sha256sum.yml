@@ -1,0 +1,21 @@
+command:
+  providerFor:
+    - sha256sum
+  prefix: SC-SHA-256-SUM
+  options: &options
+    booleans:
+      - -b, --binary
+      - -c, --check
+      - --tag
+      - -t, --text
+      - --ignore-missing
+      - --quiet
+      - --status
+      - --strict
+      - -w, --warn
+      - --help
+      - --version
+  scenarios:
+    - cmd: $0 [files...]
+      options: *options
+      name: SC-SHA-256-SUM

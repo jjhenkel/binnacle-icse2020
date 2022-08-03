@@ -1,0 +1,29 @@
+command:
+  providerFor:
+    - wget
+  prefix: SC-WGET
+  options: &options
+    booleans:
+      - -d, --debug
+      - -q, --quiet
+      - -v, --verbose
+      - --no-verbose
+      - --span-hosts
+      - --no-check-certificate
+      - -N, --timestamping
+      - -c, --continue
+      - --nc, --no-clobber
+      - --nv, --no-verbose
+      - --content-disposition
+    strings:
+      - --progress
+      - -U, --user-agent
+    paths:
+      - -O, --output-document
+      - -a, --append-output 
+      - -o, --output-file
+  scenarios:
+    - cmd: $0 <url>
+      options: *options
+      name: SC-WGET
+      fixBadLongNames: [ '-nc', '-nv' ]

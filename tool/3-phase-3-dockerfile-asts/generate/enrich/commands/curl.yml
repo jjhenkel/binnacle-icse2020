@@ -1,0 +1,31 @@
+command:
+  providerFor:
+    - curl
+  prefix: SC-CURL
+  options: &options
+    booleans:
+      - --version
+      - -f, --fail
+      - -s, --silent
+      - -l, --list-only
+      - -N, --no-buffer
+      - -v, --verbose
+      - -S, --show-error
+      - -L, --location
+      - --compressed
+      - -j, --junk-session-cookies
+      - -k, --insecure
+      - --progress
+      - --progress-bar
+      - --create-dirs
+    strings:
+      - --retry
+      - --url
+    paths:
+      - -o, --output
+    arrays:
+      - -O, --remote-name
+  scenarios:
+    - cmd: $0 [url]
+      options: *options
+      name: SC-CURL

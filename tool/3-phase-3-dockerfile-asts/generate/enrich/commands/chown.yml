@@ -1,0 +1,33 @@
+command:
+  providerFor:
+    - chown
+  prefix: SC-CHOWN
+  options: &options
+    booleans:
+      - -c, --changes
+      - -f, --silent
+      - -f, --quiet
+      - -v, --verbose
+      - --dereference
+      - -h, --no-dereference
+      - --no-preserve-root
+      - --preserve-root
+      - -R, --recursive
+      - -H
+      - -L
+      - -P
+      - --help
+      - --version
+    strings:
+      - --from
+    paths:
+      - --reference
+  scenarios:
+    - cmd: $0 [paths...]
+      mustHave:
+        - --reference
+      options: *options
+      name: SC-CHOWN
+    - cmd: $0 <owner> [paths...]
+      options: *options
+      name: SC-CHOWN

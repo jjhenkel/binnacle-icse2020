@@ -1,0 +1,36 @@
+command:
+  providerFor:
+    - dnf
+  prefix: SC-DNF
+  options: &options
+    booleans:
+      - -y, --assumeyes
+      - -q, --quiet
+      - --nogpgcheck
+    strings:
+      - --setopt
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *options
+      name: SC-DNF-INSTALL
+    - cmd: $0 debuginfo-install [packages...]
+      options: *options
+      name: SC-DNF-DEBUG-INFO-INSTALL
+    - cmd: $0 clean all
+      options: *options
+      name: SC-DNF-CLEAN-ALL
+    - cmd: $0 update
+      options: *options
+      name: SC-DNF-UPDATE
+    - cmd: $0 upgrade
+      options: *options
+      name: SC-DNF-UPGRADE
+    - cmd: $0 check-update
+      options: *options
+      name: SC-DNF-CHECK-UPDATE
+    - cmd: $0 autoremove
+      options: *options
+      name: SC-DNF-AUTO-REMOVE
+    - cmd: $0 builddep [packages...]
+      options: *options
+      name: SC-DNF-BUILD-DEP

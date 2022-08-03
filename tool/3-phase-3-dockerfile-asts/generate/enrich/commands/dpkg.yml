@@ -1,0 +1,28 @@
+command:
+  providerFor:
+    - dpkg
+  prefix: SC-DPKG
+  options: &options
+    booleans:
+      - -L, --list-files
+      - --print-architecture
+    strings:
+      - --add-architecture
+      - -x, --extract
+      - -X, --vextract
+    arrays:
+      - -i, --install
+  scenarios:
+    - cmd: $0 <dir>
+      options: *options
+      mustHave:
+        - -X
+      name: SC-DPKG
+    - cmd: $0 <dir>
+      options: *options
+      mustHave:
+        - -x
+      name: SC-DPKG
+    - cmd: $0
+      options: *options
+      name: SC-DPKG

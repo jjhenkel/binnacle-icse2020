@@ -1,0 +1,47 @@
+command:
+  providerFor:
+    - find
+  prefix: SC-FIND
+  fixThese: &fixThese
+    - -delete
+    - -print0
+    - -print
+    - -execdir
+    - -exec
+    - -type
+    - -name
+    - -regextype
+    - -regex
+    - -wholename
+    - -perm
+    - -path
+    - -depth
+    - -mindepth
+    - -maxdepth
+  options: &options
+    booleans:
+      - --delete
+      - --print0
+      - --print
+      - --execdir
+      - --exec
+      - --depth
+    strings:
+      - --type
+      - --name
+      - --regextype
+      - --regex
+      - --wholename
+      - --perm
+      - --path
+      - --mindepth
+      - --maxdepth
+  scenarios:
+    - cmd: $0 <target>
+      options: *options
+      name: SC-FIND
+      fixBadLongNames: *fixThese
+      captureAllAfter:
+        match: [ '--execdir', '--exec' ]
+        name: args
+      rejectIf: [ '-a', '-o', '(', ')', '!', '-and', '-or', '-not' ]

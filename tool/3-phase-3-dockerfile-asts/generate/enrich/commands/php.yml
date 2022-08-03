@@ -1,0 +1,40 @@
+command:
+  providerFor:
+    - php
+  prefix: SC-PHP
+  scenarios:
+    - cmd: $0 [script] [args...]
+      options:
+        boolean:
+          - -a, --interactive
+          - -C, --nochdir
+          - -q, --no-header
+          - -n, --no-php-ini
+          - -e
+          - -h, --help
+          - -H, --hide-args
+          - -i, --info
+          - -L
+          - -m, --modules
+          - -s, --syntax-highlight
+          - -v, --version
+          - -w, --stripped
+        string:
+          - -b, --bindpath
+          - -T, --timing
+          - -g, --global
+          - -r, --run
+          - -B, --process-begin
+          - -R, --process-code
+          - -E, --process-end
+        paths:
+          - -f, --file
+          - -F, --process-file
+          - -c, --php-ini
+          - -z, --zend-extension
+        arrays:
+          - -d, --define
+      name: SC-PHP
+      captureAllAfter:
+        match: [ '--' ]
+        name: args

@@ -1,0 +1,141 @@
+command:
+  providerFor:
+    - go
+  prefix: SC-GO
+  fixThese: &fixThese
+    - -race
+    - -msan
+    - -work
+    - -asmflags
+    - -buildmode
+    - -compiler
+    - -gccgoflags
+    - -gcflags
+    - -installsuffix
+    - -ldflags
+    - -mod
+    - -pkgdir
+    - -tags
+    - -toolexec
+    - -fix
+    - -insecure
+    - -json
+    - -exec
+    - -all
+    - -args
+    - -cache
+  optionsBuild: &optionsBuild
+    booleans:
+      - -i
+      - -a
+      - -n
+      - --race
+      - --msan
+      - -v
+      - --work
+      - -x
+      - --linkshared
+      - -c
+    strings:
+      - --asmflags
+      - --buildmode
+      - --compiler
+      - --gccgoflags
+      - --gcflags
+      - --installsuffix
+      - --ldflags
+      - --mod
+      - --pkgdir
+      - --tags
+      - --toolexec
+      - --exec
+    paths:
+      - -o
+  optionsGet: &optionsGet
+    booleans:
+      - -d
+      - -f
+      - -t
+      - -u
+      - -v
+      - --fix
+      - --insecure
+  scenarios:
+    - cmd: $0 get [packages...]
+      options:
+        merge: [ *optionsBuild, *optionsGet ]
+      name: SC-GO-GET
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 vet
+      options:
+        booleans:
+          - --all
+      name: SC-GO-VET
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 fmt
+      options:
+        booleans:
+          - -n
+          - -x
+      name: SC-GO-FMT
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 version
+      options: {}
+      name: SC-GO-VERSION
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 install [packages...]
+      options: *optionsBuild
+      name: SC-GO-INSTALL
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 test [packages...]
+      options: *optionsBuild
+      name: SC-GO-TEST
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+      captureAllAfter:
+        match: [ '--args' ]
+        name: args
+    - cmd: $0 clean
+      options:
+        booleans:
+          - --cache
+      name: SC-GO-CLEAN
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 build [packages...]
+      options: *optionsBuild
+      name: SC-GO-BUILD
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 mod [arg]
+      options: {}
+      name: SC-GO-MOD
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 env [arg]
+      options:
+        booleans:
+          - --json
+      name: SC-GO-ENV
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 generate [path]
+      options:
+        booleans:
+          - -n
+          - -v
+          - -x
+      name: SC-GO-GENERATE
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 list [path]
+      options: {}
+      name: SC-GO-LIST
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+      

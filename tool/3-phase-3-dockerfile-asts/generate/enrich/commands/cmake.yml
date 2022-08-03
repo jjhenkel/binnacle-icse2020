@@ -1,0 +1,66 @@
+command:
+  providerFor:
+    - cmake
+  prefix: SC-CMAKE
+  options: &options
+    booleans:
+      - --help
+      - --version
+      - -v, --verbose
+      - --strip
+      - -N
+      - --clean-first
+      - --user-stderr
+    strings:
+      - --from
+      - -E
+      - -G
+      - -U
+      - -T
+      - -A
+      - --component
+      - -j, --parallel
+    paths:
+      - --build
+      - --install
+      - --open
+      - --config
+      - --prefix
+      - -S
+      - -B
+      - -C
+    arrays:
+      - -D
+      - -W
+      - -t, --target
+  scenarios:
+    - cmd: $0 [options...]
+      mustHave:
+        - --build
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - -S
+        - -B
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - --install
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - --open
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0 [pathToSourceOrBuild]
+      options: *options
+      fixupNonSpacedArgs: true
+      saveLastNonOption: pathToSourceOrBuild
+      name: SC-CMAKE

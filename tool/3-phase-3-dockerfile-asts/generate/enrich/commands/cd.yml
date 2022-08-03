@@ -1,0 +1,9 @@
+command:
+  providerFor:
+    - cd
+  prefix: SC-CD
+  scenarios:
+    - cmd: $0 <path>
+      options: {}
+      name: SC-CD
+      replaceEmptyArgsWith: [ '~' ]

@@ -1,0 +1,49 @@
+command:
+  providerFor:
+    - ln
+  prefix: SC-LN
+  options: &options
+    booleans:
+      - -b
+      - -d, --directory
+      - -F, --directory
+      - -f, --force
+      - -i, --interactive
+      - -L, --logical
+      - -n, --no-dereference
+      - -P, --physical
+      - -r, --relative
+      - -s, --symbolic
+      - -T, --no-target-directory
+      - -v, --verbose
+      - --help
+      - --version
+    strings:
+      - --backup
+      - -S, --suffix
+    paths:
+      - -t, --target-directory
+  scenarios:
+    - cmd: $0 <target> <link>
+      options: *options
+      name: SC-LN
+    - cmd: $0 <target>
+      options: *options
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      mustHave:
+        - -t
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      mustHave:
+        - --target-directory
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      name: SC-LN
+      postProcess:
+        - tagLastElement:
+            source: targets
+            tag: SC-LN-DIRECTORY

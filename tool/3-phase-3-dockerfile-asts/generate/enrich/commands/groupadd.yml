@@ -1,0 +1,19 @@
+command:
+  providerFor:
+    - groupadd
+  prefix: SC-GROUP-ADD
+  scenarios:
+    - cmd: $0 <group>
+      options:
+        booleans:
+          - -f, --force
+          - -h, --help
+          - -o, --non-unique
+          - -r, --system
+        strings:
+          - -g, --gid
+        paths:
+          - -R, --root
+        arrays:
+          - -k, --key
+      name: SC-GROUP-ADD

@@ -1,0 +1,9 @@
+command:
+  providerFor:
+    - 'true'
+    - ':'
+  scenarios:
+    - cmd: $0
+      options: {}
+      name: SC-TRUE
+  

@@ -1,0 +1,25 @@
+command:
+  providerFor:
+    - ldconfig
+  prefix: SC-LDCONFIG
+  scenarios:
+    - cmd: $0
+      options:
+        booleans:
+          - -i, --ingore-aux-cache
+          - -l
+          - -n
+          - -N
+          - -p, --print-cache
+          - -v, --verbose
+          - -X
+          - -?, --help
+          - -?, --usage
+          - -V, --version
+        strings:
+          - -c, --format
+        paths:
+          - -r
+          - -C
+          - -f
+      name: SC-LDCONFIG

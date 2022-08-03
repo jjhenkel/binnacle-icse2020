@@ -1,0 +1,38 @@
+command:
+  prefix: SC-ADD-USER
+  providerFor:
+    - adduser
+  options: &options
+    booleans:
+      - -D, --defaults
+      - -m, --create-home
+      - -M
+      - -N, --no-user-group
+      - -o, --non-unique
+      - -r, --system
+      - -U, --user-group
+      - --disabled-password
+      - -S, --system
+    strings:
+      - -c, --comment
+      - -e, --expiredate
+      - -f, --inactive
+      - -g, --gid
+      - -p, --password
+      - -s, --shell
+      - -u, --uid
+      - -Z, --selinux-user
+      - --ingroup
+    paths:
+      - -b, --base-dir
+      - -d, --home
+      - -h
+      - -k, --skel
+    arrays:
+      - -K, --key
+      - --gecos
+      - -G, --groups
+  scenarios:
+    - cmd: $0 [user] [group]
+      options: *options
+      name: SC-ADD-USER
